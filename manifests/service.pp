@@ -22,28 +22,31 @@ class sonarqube::service {
     after    => '^PIDDIR=',
     multiple => true,
   }
-  -> file { "/etc/init.d/${sonarqube::service}":
-    ensure => link,
-    target => $sonarqube::script,
-  }
 
-  file { "/etc/systemd/system/${sonarqube::service}.service":
-    ensure  => file,
-    owner   => root,
-    group   => root,
-    mode    => '0644',
-    content => epp("${module_name}/${sonarqube::service}.service.epp")
-  }
+  if ($sonarqube::manage_service) {
+    file { "/etc/init.d/${sonarqube::service}":
+      ensure => link,
+      target => $sonarqube::script,
+    }
 
-  service { 'sonarqube':
-    ensure     => running,
-    name       => $sonarqube::service,
-    hasrestart => true,
-    hasstatus  => true,
-    enable     => true,
-    require    => [
-      File["/etc/init.d/${sonarqube::service}"],
-      File["/etc/systemd/system/${sonarqube::service}.service"]
-    ]
+    file { "/etc/systemd/system/${sonarqube::service}.service":
+      ensure  => file,
+      owner   => root,
+      group   => root,
+      mode    => '0644',
+      content => epp("${module_name}/${sonarqube::service}.service.epp")
+    }
+
+    service { 'sonarqube':
+      ensure     => running,
+      name       => $sonarqube::service,
+      hasrestart => true,
+      hasstatus  => true,
+      enable     => true,
+      require    => [
+        File["/etc/init.d/${sonarqube::service}"],
+        File["/etc/systemd/system/${sonarqube::service}.service"]
+      ]
+    }
   }
 }
