@@ -41,7 +41,7 @@ A more complex example could look like this:
 ```puppet
 class { 'java': }
 class { 'sonarqube':
-  version       => '7.9.3,
+  version       => '7.9.3',
   edition       => 'community',
   user          => 'sonar',
   group         => 'sonar',
@@ -49,14 +49,13 @@ class { 'sonarqube':
   installroot   => '/opt/sonar-install',
   home          => '/opt/sonar-data',
   log_folder    => '/var/log/sonar',
-  download_url  => 'https://binaries.sonarsource.com/Distribution/sonarqube'
+  download_url  => 'https://binaries.sonarsource.com/Distribution/sonarqube',
   jdbc          => {
     url         => 'jdbc:h2:tcp://localhost:9092/sonar',
     username    => 'sonar',
     password    => 'secretpassword',
   },
   web_java_opts => '-Xmx1024m',
-  log_folder    => '/var/local/sonar/logs',
   updatecenter  => 'true',
   http_proxy    => {
     host        => 'proxy.example.com',
