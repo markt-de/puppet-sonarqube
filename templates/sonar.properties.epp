@@ -293,6 +293,10 @@ sonar.authenticator.downcase=<%= $sonarqube::ldap['authenticator_downcase'] %>
 
 ldap.url=<%= $sonarqube::ldap['url'] %>
 
+<% if $sonarqube::ldap['follow_referrals'] { -%>
+ldap.followReferrals=<%= $sonarqube::ldap['follow_referrals'] %>
+<% } -%>
+
 <% if $sonarqube::ldap['bind_dn'] { -%>
 ldap.bindDn=<%= $sonarqube::ldap['bind_dn'] %>
 <% } -%>
