@@ -4,7 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [4.1.0] - 2021-09-08
+
+### Added
+- Add new parameter `$manage_service` ([#9])
+- Add support for `followReferrals` in LDAP parameters ([#11])
+
+### Changed
+- Update list of supported Puppet and operating system releases
+- Bump module dependency versions
+
+### Fixed
+- Fix typos in README ([#10])
+
+### Removed
+- Remove support for EOL operating system releases
 
 ## [4.0.0] - 2020-05-15
 This is a new major release in an ongoing effort to modernize the module.
@@ -69,10 +83,14 @@ migrate from maestrodev/sonarqube to this version with only minor modifications.
 ### Fixed
 - Fixes for SonarQube 7.9 LTS ([#1])
 
-[Unreleased]: https://github.com/markt-de/puppet-sonarqube/compare/v4.0.0...HEAD
+[Unreleased]: https://github.com/markt-de/puppet-sonarqube/compare/v4.1.0...HEAD
+[4.1.0]: https://github.com/markt-de/puppet-sonarqube/compare/v4.0.0...v4.1.0
 [4.0.0]: https://github.com/markt-de/puppet-sonarqube/compare/v3.1.0...v4.0.0
 [3.1.0]: https://github.com/markt-de/puppet-sonarqube/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/markt-de/puppet-sonarqube/compare/v2.6.7...v3.0.0
+[#11]: https://github.com/markt-de/puppet-sonarqube/pull/11
+[#10]: https://github.com/markt-de/puppet-sonarqube/pull/10
+[#9]: https://github.com/markt-de/puppet-sonarqube/pull/9
 [#4]: https://github.com/markt-de/puppet-sonarqube/pull/4
 [#2]: https://github.com/markt-de/puppet-sonarqube/pull/2
 [#1]: https://github.com/markt-de/puppet-sonarqube/pull/1
