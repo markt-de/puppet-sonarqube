@@ -24,6 +24,7 @@ sonarqube::jdbc:
 # LDAP and PAM are mutually exclusive. Setting $ldap will annihilate the setting of $pam
 sonarqube::ldap: {}
 sonarqube::log_folder: '/var/local/sonar/logs'
+sonarqube::manage_service: true
 sonarqube::pam: {}
 sonarqube::plugin_tmpdir: '/tmp'
 sonarqube::port: 9000

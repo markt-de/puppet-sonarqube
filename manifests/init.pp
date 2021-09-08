@@ -134,7 +134,7 @@ class sonarqube (
   String $search_host,
   Integer $search_port,
   String $service,
-  Boolean $manage_service = true,
+  Boolean $manage_service,
   Stdlib::Absolutepath $download_dir,
   Boolean $updatecenter,
   String $user,
