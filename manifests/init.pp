@@ -92,6 +92,9 @@
 # @param service
 #   Specifies the name of the SonarQube system service.
 #
+# @param manage_service
+#   If this module should create and mange the service configuration. Defaults to true
+#
 # @param updatecenter
 #   Specifies whether to enable the Update Center.
 #
@@ -131,6 +134,7 @@ class sonarqube (
   String $search_host,
   Integer $search_port,
   String $service,
+  Boolean $manage_service = true,
   Stdlib::Absolutepath $download_dir,
   Boolean $updatecenter,
   String $user,
