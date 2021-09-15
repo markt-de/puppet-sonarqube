@@ -92,6 +92,9 @@
 # @param service
 #   Specifies the name of the SonarQube system service.
 #
+# @param sso
+#   Enable authentication using HTTP headers.
+#
 # @param manage_service
 #   If this module should create and mange the service configuration. Defaults to true
 #
@@ -146,6 +149,7 @@ class sonarqube (
   Optional[String] $config = undef,
   Optional[String] $host = undef,
   Optional[String] $search_java_opts = undef,
+  Optional[Hash] $sso = undef,
   Optional[String] $web_java_opts = undef,
 ) {
   Exec {

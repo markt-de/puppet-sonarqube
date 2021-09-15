@@ -235,6 +235,56 @@ sonar.jdbc.timeBetweenEvictionRunsMillis:  <% if $sonarqube::jdbc['time_between_
 
 <% } -%>
 
+<% if !empty($sonarqube::sso) { -%>
+#---------------------------------------------------------
+# SSO AUTHENTICATION
+#---------------------------------------------------------
+<% if $sonarqube::sso['enable'] { -%>
+# Enable authentication using HTTP headers
+sonar.web.sso.enable=<%= $sonarqube::sso['enable'] %>
+<% } -%>
+
+# Name of the header to get the user login.
+# Only alphanumeric, '.' and '@' characters are allowed
+<% if 'loginheader' in $sonarqube::sso { -%>
+sonar.web.sso.loginHeader=<%= $sonarqube::sso['loginheader'] %>
+<% } else { -%>
+#sonar.web.sso.loginHeader=X-Forwarded-Login
+<% } -%>
+
+# Name of the header to get the user name
+<% if 'nameheader' in $sonarqube::sso { -%>
+sonar.web.sso.nameHeader=<%= $sonarqube::sso['nameheader'] %>
+<% } else { -%>
+#sonar.web.sso.nameHeader=X-Forwarded-Name
+<% } -%>
+
+# Name of the header to get the user email (optional)
+<% if 'emailheader' in $sonarqube::sso { -%>
+sonar.web.sso.emailHeader=<%= $sonarqube::sso['emailheader'] %>
+<% } else { -%>
+#sonar.web.sso.emailHeader=X-Forwarded-Email
+<% } -%>
+
+# Name of the header to get the list of user groups, separated by comma (optional).
+# If the sonar.sso.groupsHeader is set, the user will belong to those groups if groups exist in SonarQube.
+# If none of the provided groups exists in SonarQube, the user will only belong to the default group.
+# Note that the default group will always be set.
+<% if 'groupsheader' in $sonarqube::sso { -%>
+sonar.web.sso.groupsHeader=<%= $sonarqube::sso['groupsheader'] %>
+<% } else { -%>
+#sonar.web.sso.groupsHeader=X-Forwarded-Groups
+<% } -%>
+
+# Interval used to know when to refresh name, email and groups.
+# During this interval, if for instance the name of the user is changed in the header, it will only be updated after X minutes.
+<% if 'refreshintervalinminutes' in $sonarqube::sso { -%>
+sonar.web.sso.refreshIntervalInMinutes=<%= $sonarqube::sso['refreshintervalinminutes'] %>
+<% } else { -%>
+#sonar.web.sso.refreshIntervalInMinutes=5
+<% } -%>
+<% } -%>
+
 #---------------------------------------------------------
 # UPDATE CENTER
 #---------------------------------------------------------
