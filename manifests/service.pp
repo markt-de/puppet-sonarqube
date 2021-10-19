@@ -25,7 +25,7 @@ class sonarqube::service {
 
   if ($sonarqube::manage_service) {
     file { "/etc/init.d/${sonarqube::service}":
-      ensure => link,
+      ensure => absent,
       target => $sonarqube::script,
     }
 
