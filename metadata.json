@@ -67,7 +67,7 @@
     "security"
   ],
   "description": "A module to install and configure SonarQube",
-  "pdk-version": "1.17.0",
-  "template-url": "pdk-default#1.17.0",
-  "template-ref": "tags/1.17.0-0-gd3a4319"
+  "pdk-version": "2.2.0",
+  "template-url": "pdk-default#2.2.0",
+  "template-ref": "tags/2.2.0-0-g2381db6"
 }
