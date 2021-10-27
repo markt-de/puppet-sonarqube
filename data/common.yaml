@@ -33,6 +33,7 @@ sonarqube::profile: false
 sonarqube::search_host: '127.0.0.1'
 sonarqube::search_port: 9001
 sonarqube::service: 'sonar'
+sonarqube::sso: {}
 sonarqube::updatecenter: true
 sonarqube::user: 'sonar'
 sonarqube::user_system: true

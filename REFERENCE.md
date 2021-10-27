@@ -219,6 +219,12 @@ Data type: `String`
 
 Specifies the name of the SonarQube system service.
 
+##### `sso`
+
+Data type: `Hash`
+
+Enable authentication using HTTP headers.
+
 ##### `updatecenter`
 
 Data type: `Boolean`

@@ -63,6 +63,14 @@ class { 'sonarqube':
     ntlm_domain => '',
     user        => '',
     password    => '',
+  },
+  sso             => {
+    enable        => 'true',
+    emailheader   => 'X-Forwarded-Email',
+    groupsheader  => 'X-Forwarded-Groups',
+    loginheader   => 'X-Forwarded-Login',
+    nameheader    => 'X-Forwarded-Name',
+    refreshintervalinminutes => '5',
   }
 }
 ```
