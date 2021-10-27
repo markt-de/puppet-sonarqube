@@ -13,12 +13,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Replace legacy init.d with systemd service
 - Update `$sonarqube::version` to current LTS version
 
-### Removed
-- Remove legacy init.d file
-
 ### Fixed
 - Fix service enable on Debian 10 ([#14])
 - Service template not found when using a custom value for `$sonarqube::service` ([#8])
+
+### Removed
+- Remove legacy init.d file
 
 ## [4.1.0] - 2021-09-08
 
