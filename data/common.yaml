@@ -37,7 +37,7 @@ sonarqube::sso: {}
 sonarqube::updatecenter: true
 sonarqube::user: 'sonar'
 sonarqube::user_system: true
-sonarqube::version: '7.9.3'
+sonarqube::version: '8.9.3'
 
 sonarqube::runner::download_url: 'http://repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist'
 sonarqube::runner::installroot: '/usr/local'

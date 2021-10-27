@@ -11,10 +11,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Replace legacy init.d with systemd service
+- Update `$sonarqube::version` to current LTS version
 
 ### Fixed
 - Fix service enable on Debian 10 ([#14])
-- Service template not found when using a custom value for `$sonarqube::service`
+- Service template not found when using a custom value for `$sonarqube::service` ([#8])
 
 ## [4.1.0] - 2021-09-08
 
@@ -105,6 +106,7 @@ migrate from maestrodev/sonarqube to this version with only minor modifications.
 [#11]: https://github.com/markt-de/puppet-sonarqube/pull/11
 [#10]: https://github.com/markt-de/puppet-sonarqube/pull/10
 [#9]: https://github.com/markt-de/puppet-sonarqube/pull/9
+[#8]: https://github.com/markt-de/puppet-sonarqube/pull/8
 [#4]: https://github.com/markt-de/puppet-sonarqube/pull/4
 [#2]: https://github.com/markt-de/puppet-sonarqube/pull/2
 [#1]: https://github.com/markt-de/puppet-sonarqube/pull/1
