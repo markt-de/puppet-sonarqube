@@ -24,29 +24,26 @@ class sonarqube::service {
   }
 
   if ($sonarqube::manage_service) {
+    # Remove legacy init script
     file { "/etc/init.d/${sonarqube::service}":
-      ensure => link,
-      target => $sonarqube::script,
+      ensure => absent,
     }
 
-    file { "/etc/systemd/system/${sonarqube::service}.service":
+    # Add systemd service configuration
+    -> file { "/etc/systemd/system/${sonarqube::service}.service":
       ensure  => file,
       owner   => root,
       group   => root,
       mode    => '0644',
-      content => epp("${module_name}/${sonarqube::service}.service.epp")
+      content => epp("${module_name}/sonar.service.epp")
     }
 
-    service { 'sonarqube':
+    # Enable systemd service
+    -> service { $sonarqube::service:
       ensure     => running,
-      name       => $sonarqube::service,
       hasrestart => true,
       hasstatus  => true,
       enable     => true,
-      require    => [
-        File["/etc/init.d/${sonarqube::service}"],
-        File["/etc/systemd/system/${sonarqube::service}.service"]
-      ]
     }
   }
 }
