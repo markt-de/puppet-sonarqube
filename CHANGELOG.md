@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [4.2.0] - 2021-10-27
 
 ### Added
 - Add support for SSO authentication ([#12])
@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Replace legacy init.d with systemd service
 - Update `$sonarqube::version` to current LTS version
+
+### Removed
+- Remove legacy init.d file
 
 ### Fixed
 - Fix service enable on Debian 10 ([#14])
@@ -96,7 +99,8 @@ migrate from maestrodev/sonarqube to this version with only minor modifications.
 ### Fixed
 - Fixes for SonarQube 7.9 LTS ([#1])
 
-[Unreleased]: https://github.com/markt-de/puppet-sonarqube/compare/v4.1.0...HEAD
+[Unreleased]: https://github.com/markt-de/puppet-sonarqube/compare/v4.2.0...HEAD
+[4.2.0]: https://github.com/markt-de/puppet-sonarqube/compare/v4.1.0...v4.2.0
 [4.1.0]: https://github.com/markt-de/puppet-sonarqube/compare/v4.0.0...v4.1.0
 [4.0.0]: https://github.com/markt-de/puppet-sonarqube/compare/v3.1.0...v4.0.0
 [3.1.0]: https://github.com/markt-de/puppet-sonarqube/compare/v3.0.0...v3.1.0
