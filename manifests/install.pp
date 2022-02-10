@@ -13,7 +13,7 @@ class sonarqube::install {
   }
 
   if ! defined(Package[unzip]) {
-    ensure_packages(['unzip'] {
+    ensure_packages(['unzip'], {
       ensure => present,
       before => Exec['install sonarqube distribution']
     })
