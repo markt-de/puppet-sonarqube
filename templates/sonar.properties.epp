@@ -356,6 +356,9 @@ ldap.bindPassword=<%= $sonarqube::ldap['bind_password'] %>
 <% if $sonarqube::ldap['authentication'] { -%>
 ldap.authentication=<%= $sonarqube::ldap['authentication'] %>
 <% } -%>
+<% if $sonarqube::ldap['starttls'] { -%>
+ldap.StartTLS=<%= $sonarqube::ldap['starttls'] %>
+<% } -%>
 
 <% if $sonarqube::ldap['user_base_dn'] { -%>
 ldap.user.baseDn=<%= $sonarqube::ldap['user_base_dn'] %>
