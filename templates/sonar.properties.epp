@@ -152,6 +152,9 @@ sonar.search.javaOpts=<%= $sonarqube::search_java_opts %>
 sonar.search.port=<%= $sonarqube::search_port %>
 sonar.search.host=<%= $sonarqube::search_host %>
 
+<% if $sonarqube::search_java_additional_opts { -%>
+sonar.search.javaAdditionalOpts=<%= $sonarqube::search_java_additional_opts %>
+<% } -%>
 #-----------------------------------------------------------------------
 # DATABASE
 #

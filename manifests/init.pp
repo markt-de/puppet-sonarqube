@@ -113,6 +113,9 @@
 # @param web_java_opts
 #   Optional JVM options for SonarQube's web server.
 #
+# @param search_java_additional_opts
+#   Optional JVM options for embedded elasticsearch server.
+#
 class sonarqube (
   # required parameters
   String $arch,
@@ -149,6 +152,7 @@ class sonarqube (
   Optional[String] $config = undef,
   Optional[String] $host = undef,
   Optional[String] $search_java_opts = undef,
+  Optional[String] $search_java_additional_opts = undef,
   Optional[Hash] $sso = undef,
   Optional[String] $web_java_opts = undef,
 ) {
