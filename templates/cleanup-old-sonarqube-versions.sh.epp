@@ -1,5 +1,7 @@
 #!/bin/sh
-
+# ************************************
+# Managed by Puppet
+# ************************************
 cd $1
 for directory in $(ls | grep "sonarqube-")
 do
