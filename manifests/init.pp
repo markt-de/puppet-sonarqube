@@ -101,6 +101,9 @@
 # @param updatecenter
 #   Specifies whether to enable the Update Center.
 #
+# @param pidfile
+#   Specifies the name of the PID file.
+#
 # @param user
 #   The user for the SonarQube application.
 #
@@ -140,6 +143,7 @@ class sonarqube (
   Boolean $manage_service,
   Stdlib::Absolutepath $download_dir,
   Boolean $updatecenter,
+  String $pidfile,
   String $user,
   Boolean $user_system,
   String $version,
