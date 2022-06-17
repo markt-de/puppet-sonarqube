@@ -341,6 +341,7 @@ sonar.security.localUsers=<%= $sonarqube::ldap['local_users'] %>
 sonar.authenticator.downcase=<%= $sonarqube::ldap['authenticator_downcase'] %>
 <% } -%>
 
+<% if $sonarqube::ldap['url'] { -%>
 ldap.url=<%= $sonarqube::ldap['url'] %>
 
 <% if $sonarqube::ldap['follow_referrals'] { -%>
@@ -379,7 +380,46 @@ ldap.group.request=<%= $sonarqube::ldap['group_request'] %>
 <% if $sonarqube::ldap['group_id_attribute'] { -%>
 ldap.group.idAttribute=<%= $sonarqube::ldap['group_id_attribute'] %>
 <% } -%>
+<% } elsif $sonarqube::ldap['servers'] { -%>
+ldap.servers=<%= join($sonarqube::ldap['servers'].map | $server | { $server['id'].regsubst(/-\./, '_', 'G') }, ',') %>
 
+<% $sonarqube::ldap['servers'].each | $server | { -%>
+<% $server_id = $server['id'].regsubst(/-\./, '_', 'G') -%>
+ldap.<%= $server_id -%>.realm=<%= $server['realm'] %>
+ldap.<%= $server_id -%>.url=<%= $server['url'] %>
+<% if $server['bind_dn'] { -%>
+ldap.<%= $server_id -%>.bindDn=<%= $server['bind_dn'] %>
+<% } -%>
+<% if $server['bind_password'] { -%>
+ldap.<%= $server_id -%>.bindPassword=<%= $server['bind_password'] %>
+<% } -%>
+<% if $server['user_base_dn'] { -%>
+ldap.<%= $server_id -%>.user.baseDn=<%= $server['user_base_dn'] %>
+<% } -%>
+<% if $server['user_request'] { -%>
+ldap.<%= $server_id -%>.user.request=<%= $server['user_request'] %>
+<% } -%>
+<% if $server['user_real_name_attribute'] { -%>
+ldap.<%= $server_id -%>.user.realNameAttribute=<%= $server['user_real_name_attribute'] %>
+<% } -%>
+<% if $server['user_email_attribute'] { -%>
+ldap.<%= $server_id -%>.user.emailAttribute=<%= $server['user_email_attribute'] %>
+<% } -%>
+<% if $server['group_base_dn'] { -%>
+ldap.<%= $server_id -%>.group.baseDn=<%= $server['group_base_dn'] %>
+<% } -%>
+<% if $server['group_request'] { -%>
+ldap.<%= $server_id -%>.group.request=<%= $server['group_request'] %>
+<% } -%>
+<% if $server['group_id_attribute'] { -%>
+ldap.<%= $server_id -%>.group.idAttribute=<%= $server['group_id_attribute'] %>
+<% } -%>
+<% if $server['authentication'] { -%>
+ldap.<%= $server_id -%>.authentication=<%= $server['authentication'] %>
+<% } -%>
+
+<% } -%>
+<% } -%>
 <% } elsif !empty($sonarqube::pam) { -%>
 
 # PAM authentication
