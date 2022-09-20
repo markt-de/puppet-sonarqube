@@ -1,15 +1,14 @@
 fixtures:
   repositories:
-    archive: "https://github.com/voxpupuli/puppet-archive.git"
-    augeasproviders_core: 'https://github.com/hercules-team/augeasproviders_core.git'
-    augeas_core:
-      repo: "https://github.com/puppetlabs/puppetlabs-augeas_core"
-      puppet_version: ">= 6.0.0"
     facts: "https://github.com/puppetlabs/puppetlabs-facts.git"
-    java: "git://github.com/puppetlabs/puppetlabs-java.git"
-    maven: "git://github.com/maestrodev/puppet-maven.git"
+    maven: "https://github.com/maestrodev/puppet-maven.git"
     provision: "https://github.com/puppetlabs/provision.git"
     puppet_agent: "https://github.com/puppetlabs/puppetlabs-puppet_agent.git"
-    stdlib: "git://github.com/puppetlabs/puppetlabs-stdlib.git"
+  forge_modules:
+    archive: "puppet/archive"
+    augeas_core: "puppetlabs/augeas_core"
+    augeasproviders_core: "herculesteam/augeasproviders_core"
+    java: "puppetlabs/java"
+    stdlib: "puppetlabs/stdlib"
   symlinks:
     sonarqube: "#{source_dir}"

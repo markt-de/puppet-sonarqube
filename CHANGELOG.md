@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Update to PDK 2.5.0
 
 ### Fixed
+- Fix unit tests
 - Fix puppet-lint offenses
 
 ## [4.2.0] - 2021-10-27

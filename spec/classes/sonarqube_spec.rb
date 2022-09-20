@@ -38,7 +38,7 @@ describe 'sonarqube' do
   end
 
   context 'when unzip package is not defined', :compile do
-    it { is_expected.to contain_package('unzip').with_ensure('present') }
+    it { is_expected.to contain_package('unzip').with_ensure('installed') }
   end
 
   context 'when unzip package is already defined', :compile do
