@@ -263,6 +263,8 @@ Specifies whether the SonarQube user should be a system user.
 Data type: `String`
 
 Specifies the version of SonarQube that should be installed/updated.
+Expects a 4 digit version number (1.2.3.4), which can be found on the
+SonarQube download page.
 
 ##### `web_java_opts`
 
