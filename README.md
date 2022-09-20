@@ -32,7 +32,7 @@ The minimum configuration should at least specify the desired version:
 ```puppet
 class { 'java': }
 class { 'sonarqube':
-  version => '7.9.3',
+  version => '8.9.9.56886',
 }
 ```
 
@@ -41,7 +41,7 @@ A more complex example could look like this:
 ```puppet
 class { 'java': }
 class { 'sonarqube':
-  version       => '7.9.3',
+  version       => '8.9.9.56886',
   edition       => 'community',
   user          => 'sonar',
   group         => 'sonar',
@@ -142,7 +142,7 @@ $ldap = {
 class { 'java': }
 -> class { 'sonarqube':
   ldap    => $ldap,
-  version => '7.9.3'
+  version => '8.9.9.56886'
 }
 
 # Do not forget to add the SonarQube LDAP plugin that is not provided out of

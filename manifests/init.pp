@@ -112,6 +112,8 @@
 #
 # @param version
 #   Specifies the version of SonarQube that should be installed/updated.
+#   Expects a 4 digit version number (1.2.3.4), which can be found on the
+#   SonarQube download page.
 #
 # @param web_java_opts
 #   Optional JVM options for SonarQube's web server.

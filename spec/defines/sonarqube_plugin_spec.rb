@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe 'sonarqube::plugin', type: :define do
+  let(:sonar_version) { '8.9.9.56886' }
+
   on_supported_os.each do |os, _facts|
     context "on #{os}" do
       context 'when removing a plugin' do
@@ -11,6 +13,13 @@ describe 'sonarqube::plugin', type: :define do
         let(:params) do
           { 'ensure'  => 'absent',
             'version' => plugin_version }
+        end
+        let(:pre_condition) do
+          <<-EOS
+            class { sonarqube:
+              version => "#{sonar_version}",
+            }
+          EOS
         end
 
         it { is_expected.to compile.with_all_deps }
@@ -26,6 +35,13 @@ describe 'sonarqube::plugin', type: :define do
         let(:title) { plugin_name }
         let(:params) do
           { 'version' => plugin_version }
+        end
+        let(:pre_condition) do
+          <<-EOS
+            class { sonarqube:
+              version => "#{sonar_version}",
+            }
+          EOS
         end
 
         it { is_expected.to compile.with_all_deps }
@@ -44,6 +60,13 @@ describe 'sonarqube::plugin', type: :define do
           { 'version' => plugin_version,
             'ghid'    => ghid }
         end
+        let(:pre_condition) do
+          <<-EOS
+            class { sonarqube:
+              version => "#{sonar_version}",
+            }
+          EOS
+        end
 
         it { is_expected.to compile.with_all_deps }
         it { is_expected.to contain_archive("download plugin #{plugin_name}-#{plugin_version}.jar from GitHub").with_source("https://github.com/#{ghid}/releases/download/#{plugin_version}/#{plugin_name}-#{plugin_version}.jar") } # rubocop:disable Metrics/LineLength
@@ -60,6 +83,13 @@ describe 'sonarqube::plugin', type: :define do
         let(:params) do
           { 'version' => plugin_version,
             'url'     => plugin_url }
+        end
+        let(:pre_condition) do
+          <<-EOS
+            class { sonarqube:
+              version => "#{sonar_version}",
+            }
+          EOS
         end
 
         it { is_expected.to compile.with_all_deps }

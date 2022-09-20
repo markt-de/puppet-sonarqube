@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+This is a new major release and contains breaking changes. Of note is the
+new requirement to specify the `$version` parameter using SonarQubes
+4 digit version number.
 
 ### Added
 - Add support for the `ldap.StartTLS` parameter ([#20])
@@ -12,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add new parameter `$pidfile` for backwards compatibility ([#23])
 
 ### Changed
+- Remove default value for `$version` parameters
 - Use `ensure_packages` to prevent duplicate declaration ([#18])
 - Add Puppet header to files ([#22])
 - Update OS support and dependencies

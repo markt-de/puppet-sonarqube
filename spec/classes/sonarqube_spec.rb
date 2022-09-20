@@ -2,20 +2,22 @@ require 'spec_helper'
 
 describe 'sonarqube' do
   let(:sonar_properties) { '/usr/local/sonar/conf/sonar.properties' }
+  let(:sonar_version) { '8.9.9.56886' }
 
   context 'when installing LTS version', :compile do
-    let(:params) { { version: '7.9.3' } }
+    let(:params) { { version: sonar_version.to_s } }
 
     it { is_expected.to contain_class('sonarqube::install') }
     it { is_expected.to contain_class('sonarqube::config') }
     it { is_expected.to contain_class('sonarqube::service') }
 
-    it { is_expected.to contain_archive('download sonarqube distribution').with_source('https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.9.3.zip') }
+    it { is_expected.to contain_archive('download sonarqube distribution').with_source('https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.9.9.56886.zip') }
   end
 
   context 'when crowd configuration is supplied', :compile do
     let :params do
       {
+        version: sonar_version.to_s,
         crowd:
           {
             'application' => 'crowdapplication',
@@ -34,10 +36,14 @@ describe 'sonarqube' do
   end
 
   context 'when no crowd configuration is supplied', :compile do
+    let(:params) { { version: sonar_version.to_s } }
+
     it { is_expected.to contain_file(sonar_properties).without_content('crowd') }
   end
 
   context 'when unzip package is not defined', :compile do
+    let(:params) { { version: sonar_version.to_s } }
+
     it { is_expected.to contain_package('unzip').with_ensure('installed') }
   end
 
@@ -45,6 +51,7 @@ describe 'sonarqube' do
     let :pre_condition do
       "package { 'unzip': ensure => installed }"
     end
+    let(:params) { { version: sonar_version.to_s } }
 
     it { is_expected.to contain_package('unzip').with_ensure('installed') }
   end
@@ -52,6 +59,7 @@ describe 'sonarqube' do
   context 'when ldap local users configuration is supplied', :compile do
     let :params do
       {
+        version: sonar_version.to_s,
         ldap:
           {
             'url'          => 'ldap://myserver.mycompany.com',
@@ -70,6 +78,7 @@ describe 'sonarqube' do
   context 'when ldap local users configuration is supplied as array', :compile do
     let :params do
       {
+        version: sonar_version.to_s,
         ldap:
           {
             'url'          => 'ldap://myserver.mycompany.com',
@@ -88,6 +97,7 @@ describe 'sonarqube' do
   context 'when no ldap local users configuration is supplied', :compile do
     let :params do
       {
+        version: sonar_version.to_s,
         ldap:
           {
             'url'          => 'ldap://myserver.mycompany.com',
@@ -103,6 +113,8 @@ describe 'sonarqube' do
   end
 
   context 'when no ldap configuration is supplied', :compile do
+    let(:params) { { version: sonar_version.to_s } }
+
     it { is_expected.to contain_file(sonar_properties).without_content(%r{sonar.security}) }
     it { is_expected.to contain_file(sonar_properties).without_content(%r{ldap.}) }
   end

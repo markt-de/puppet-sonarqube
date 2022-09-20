@@ -38,7 +38,7 @@ sonarqube::updatecenter: true
 sonarqube::pidfile: 'SonarQube.pid'
 sonarqube::user: 'sonar'
 sonarqube::user_system: true
-sonarqube::version: '8.9.3'
+sonarqube::version: ~
 
 sonarqube::runner::download_url: 'http://repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist'
 sonarqube::runner::installroot: '/usr/local'
@@ -48,4 +48,4 @@ sonarqube::runner::jdbc:
   password: 'sonar'
 sonarqube::runner::distribution_name: 'sonar-runner'
 sonarqube::runner::sonarqube_server: 'http://sonar.local:9000/'
-sonarqube::runner::version: '2.4'
+sonarqube::runner::version: ~
