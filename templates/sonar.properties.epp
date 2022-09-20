@@ -1,3 +1,6 @@
+# ************************************
+# Managed by Puppet
+# ************************************
 #--------------------------------------------------------
 # To use an environment variable, use the following syntax :  ${env:NAME_OF_ENV_VARIABLE}
 # For example :
