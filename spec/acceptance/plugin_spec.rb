@@ -1,14 +1,19 @@
 require 'spec_helper_acceptance'
 
 describe 'sonarqube::plugin define' do
-  sonar_version = '7.9.3'
+  sonar_version = '8.9.9.56886'
   sonar_user = 'sonar'
   sonar_group = 'sonar'
   plugin_dir = '/var/local/sonar/extensions/plugins'
-  web_log = '/var/local/sonar/logs/web.log'
 
   before(:all) do
     apply_manifest(%(
+      if ($facts['os']['family'] == 'Debian') {
+        $target_path = '/usr/lib/jvm'
+      } else {
+        $target_path = '/usr/java'
+      }
+
       java::adopt { 'jdk11':
         ensure        => 'present',
         java          => 'jdk',
@@ -17,7 +22,7 @@ describe 'sonarqube::plugin define' do
       }
       -> file { '/usr/bin/java':
         ensure => link,
-        target => '/usr/java/jdk-11.0.6+10/bin/java',
+        target => "${target_path}/jdk-11.0.6+10/bin/java",
       }
     ), catch_failures: true)
   end
@@ -42,36 +47,6 @@ describe 'sonarqube::plugin define' do
     it { expect(file("#{plugin_dir}/#{plugin_name}-#{plugin_version}.jar")).not_to be_file }
   end
 
-  describe 'installing a plugin from sonarsource' do
-    plugin_name = 'sonar-kotlin-plugin'
-    plugin_version = '1.7.0.883'
-    grep_pattern = "Deploy plugin SonarKotlin.*#{plugin_version}"
-
-    let(:pp) do
-      <<-MANIFEST
-        class { 'sonarqube':
-          version => "#{sonar_version}"
-        }
-        ~> sonarqube::plugin { #{plugin_name}:
-          version => "#{plugin_version}",
-        }
-      MANIFEST
-    end
-
-    it { apply_manifest(pp, catch_failures: true) }
-    it { expect(file("#{plugin_dir}/#{plugin_name}-#{plugin_version}.jar")).to be_file }
-    it { expect(file("#{plugin_dir}/#{plugin_name}-#{plugin_version}.jar")).to be_owned_by sonar_user }
-    it { expect(file("#{plugin_dir}/#{plugin_name}-#{plugin_version}.jar")).to be_grouped_into sonar_group }
-    it 'deploys the plugin with no errors' do
-      # XXX: This is error-prone, but we need to give SonarQube enough time
-      # to startup all components before we can perform plugin checks.
-      run_shell('sleep 90')
-      run_shell("grep \"#{grep_pattern}\" #{web_log}") do |r|
-        expect(r.exit_code).to be_zero
-      end
-    end
-  end
-
   describe 'installing a plugin from github' do
     plugin_name = 'checkstyle-sonar-plugin'
     plugin_version = '4.31'
@@ -79,8 +54,10 @@ describe 'sonarqube::plugin define' do
 
     let(:pp) do
       <<-MANIFEST
-        class { 'sonarqube': }
-        sonarqube::plugin { #{plugin_name}:
+        class { 'sonarqube':
+          version => "#{sonar_version}"
+        }
+        ~> sonarqube::plugin { #{plugin_name}:
           version => "#{plugin_version}",
           ghid    => "#{ghid}",
         }
@@ -100,8 +77,10 @@ describe 'sonarqube::plugin define' do
 
     let(:pp) do
       <<-MANIFEST
-        class { 'sonarqube': }
-        sonarqube::plugin { #{plugin_name}:
+        class { 'sonarqube':
+          version => "#{sonar_version}"
+        }
+        ~> sonarqube::plugin { #{plugin_name}:
           version => "#{plugin_version}",
           url     => "#{plugin_url}",
         }

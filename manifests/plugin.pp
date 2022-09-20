@@ -76,6 +76,8 @@ define sonarqube::plugin (
       }
     } elsif ($legacy == false) and $version {
       # Install from SonarSource
+      # NOTE: This feature is deprecated since SonarQube 8.5, see:
+      # https://community.sonarsource.com/t/sonarqube-v8-5-and-beyond-where-did-all-the-plugins-go/32792
 
       # Compose SonarSource download URL. Let's hope that they stick to
       # this pattern for years to come.

@@ -8,6 +8,12 @@ describe 'sonarqube' do
 
   before(:all) do
     apply_manifest(%(
+      if ($facts['os']['family'] == 'Debian') {
+        $target_path = '/usr/lib/jvm'
+      } else {
+        $target_path = '/usr/java'
+      }
+
       java::adopt { 'jdk11':
         ensure        => 'present',
         java          => 'jdk',
@@ -16,7 +22,7 @@ describe 'sonarqube' do
       }
       -> file { '/usr/bin/java':
         ensure => link,
-        target => '/usr/java/jdk-11.0.6+10/bin/java',
+        target => "${target_path}/jdk-11.0.6+10/bin/java",
       }
       #class { 'maven::maven': }
     ), catch_failures: true)
@@ -48,27 +54,8 @@ describe 'sonarqube' do
   end
 
   context 'when installing LTS version' do
-    let(:version) { '7.9.3' }
+    let(:version) { '8.9.9.56886' }
 
     it_behaves_like :sonar_common
-
-    context 'using LDAP' do
-      let(:pp) do
-        %($ldap = {
-          url          => 'ldap://myserver.mycompany.com',
-          user_base_dn => 'ou=Users,dc=mycompany,dc=com',
-          local_users  => ['foo', 'bar'],
-        }
-
-        class { 'sonarqube' :
-          version => '#{version}',
-          ldap    => $ldap,
-        })
-      end
-
-      it { apply_manifest(pp, catch_failures: true) }
-      it { expect(file("#{installroot}/conf/sonar.properties").content).to match(%r{^ldap.url=ldap://myserver.mycompany.com}) }
-      it { expect(file("#{installroot}/conf/sonar.properties").content).to match(%r{^sonar.security.localUsers=foo,bar}) }
-    end
   end
 end

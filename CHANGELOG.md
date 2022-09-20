@@ -16,10 +16,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add Puppet header to files ([#22])
 - Update OS support and dependencies
 - Update to PDK 2.5.0
+- Move acceptance tests to GitHub Actions
+- Run acceptance tests with LTS version 8.9.9
 
 ### Fixed
-- Fix unit tests
+- Fix unit tests & acceptance tests
 - Fix puppet-lint offenses
+
+### Deprecated
+- Installing plugins from SonarSource is deprecated
+
+### Removed
+- Remove acceptance tests for LDAP configurations (requires a working LDAP server)
 
 ## [4.2.0] - 2021-10-27
 
