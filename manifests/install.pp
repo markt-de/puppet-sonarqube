@@ -13,10 +13,10 @@ class sonarqube::install {
   }
 
   if ! defined(Package[unzip]) {
-    package { 'unzip':
+    ensure_packages(['unzip'], {
       ensure => present,
-      before => Exec['install sonarqube distribution'],
-    }
+      before => Exec['install sonarqube distribution']
+    })
   }
 
   # Create user and group
