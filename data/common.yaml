@@ -35,6 +35,7 @@ sonarqube::search_port: 9001
 sonarqube::service: 'sonar'
 sonarqube::sso: {}
 sonarqube::updatecenter: true
+sonarqube::pidfile: 'SonarQube.pid'
 sonarqube::user: 'sonar'
 sonarqube::user_system: true
 sonarqube::version: '8.9.3'

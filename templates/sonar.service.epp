@@ -11,7 +11,7 @@ ExecStartPre=/sbin/sysctl -q -w vm.max_map_count=${MAX_MAP_COUNT}
 ExecStart=<%= $sonarqube::installroot -%>/sonar/bin/<%= regsubst($sonarqube::arch,'_','-') -%>/sonar.sh start
 ExecStop=<%= $sonarqube::installroot -%>/sonar/bin/<%= regsubst($sonarqube::arch,'_','-') -%>/sonar.sh stop
 ExecReload=<%= $sonarqube::installroot -%>/sonar/bin/<%= regsubst($sonarqube::arch,'_','-') -%>/sonar.sh restart
-PIDFile=<%= $sonarqube::home -%>/SonarQube.pid
+PIDFile=<%= $sonarqube::home -%>/<%= $sonarqube::pidfile %>
 Type=forking
 PermissionsStartOnly=true
 User=<%= $sonarqube::user %>
