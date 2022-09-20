@@ -1,4 +1,7 @@
 # @summary Symlink a folder to SonarQube's installation directory
+#
+# @param home
+#   SonarQube's data directory.
 define sonarqube::move_to_home (
   Stdlib::Absolutepath $home,
 ) {

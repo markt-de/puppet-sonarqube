@@ -15,6 +15,9 @@
 # @param groupid
 #   Specifies the groupid to use with maven.
 #
+# @param legacy
+#   Install plugin using Maven. May not work with recent versions.
+#
 # @param url
 #   A direct download URL that points to the .jar file for the specified plugin.
 #   The filename must match the values of `$name` and `$version`, otherwise the
@@ -33,7 +36,7 @@ define sonarqube::plugin (
   Optional[String] $ghid = undef,
   Optional[String] $url = undef,
 ) {
-  include '::sonarqube'
+  include 'sonarqube'
 
   $plugin_name = "${artifactid}-${version}.jar"
   $plugin_tmp  = "${sonarqube::plugin_tmpdir}/${plugin_name}"
@@ -41,9 +44,9 @@ define sonarqube::plugin (
 
   # Install plugin
   if $ensure == present {
-
-    # Use direct download URL for installation
     if $url {
+      # Use direct download URL for installation
+
       archive { "download plugin ${plugin_name}":
         ensure => present,
         path   => $plugin_tmp,
@@ -54,8 +57,9 @@ define sonarqube::plugin (
           Exec["remove old versions of ${artifactid}"],
         ],
       }
-    # Use GitHub project URL for installation
     } elsif $ghid {
+      # Use GitHub project URL for installation
+
       # Compose GitHub download URL. If the project does not use this
       # pattern, then the direct download method should be used.
       $_ghurl = "https://github.com/${ghid}/releases/download/${version}/${artifactid}-${version}.jar"
@@ -70,8 +74,9 @@ define sonarqube::plugin (
           Exec["remove old versions of ${artifactid}"],
         ],
       }
-    # Install from SonarSource
     } elsif ($legacy == false) and $version {
+      # Install from SonarSource
+
       # Compose SonarSource download URL. Let's hope that they stick to
       # this pattern for years to come.
       $_sonarurl = "https://binaries.sonarsource.com/Distribution/${artifactid}/${artifactid}-${version}.jar"
@@ -86,8 +91,9 @@ define sonarqube::plugin (
           Exec["remove old versions of ${artifactid}"],
         ],
       }
-    # Legacy method: install using Maven. May not work with recent versions.
     } elsif ($legacy == true) and $version {
+      # Legacy method: install using Maven. May not work with recent versions.
+
       maven { "/tmp/${plugin_name}":
         groupid    => $groupid,
         artifactid => $artifactid,

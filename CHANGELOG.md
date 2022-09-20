@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Use `ensure_packages` to prevent duplicate declaration ([#18])
 - Add Puppet header to files ([#22])
+- Update to PDK 2.5.0
+
+### Fixed
+- Fix puppet-lint offenses
 
 ## [4.2.0] - 2021-10-27
 

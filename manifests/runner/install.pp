@@ -6,7 +6,7 @@ class sonarqube::runner::install {
   if ! defined(Package[unzip]) {
     package { 'unzip':
       ensure => present,
-      before => Exec[unzip-sonar-runner],
+      before => Exec['unzip-sonar-runner'],
     }
   }
 
@@ -30,7 +30,7 @@ class sonarqube::runner::install {
   -> exec { 'unzip-sonar-runner':
     command => "unzip -o ${tmpzip} -d ${sonarqube::runner::installroot}",
     creates => "${sonarqube::runner::installroot}/sonar-runner-${sonarqube::runner::version}/bin",
-    require => [Package[unzip], Archive['download-sonar-runner']],
+    require => [Package['unzip'], Archive['download-sonar-runner']],
   }
 
   # Sonar settings for terminal sessions.

@@ -35,7 +35,7 @@ class sonarqube::service {
       owner   => root,
       group   => root,
       mode    => '0644',
-      content => epp("${module_name}/sonar.service.epp")
+      content => epp("${module_name}/sonar.service.epp"),
     }
 
     # Enable systemd service
