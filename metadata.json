@@ -1,7 +1,7 @@
 {
   "name": "fraenki-sonarqube",
-  "version": "4.2.0",
-  "author": "fraenki",
+  "version": "5.0.0",
+  "author": "markt.de",
   "summary": "SonarQube installation and configuration",
   "license": "Apache-2.0",
   "source": "http://github.com/markt-de/puppet-sonarqube",

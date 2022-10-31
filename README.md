@@ -14,7 +14,6 @@
 3. [Reference](#reference)
 4. [Development](#development)
     - [Contributing](#contributing)
-    - [Fork](#fork)
 5. [License](#license)
 
 ## Overview
@@ -35,6 +34,8 @@ class { 'sonarqube':
   version => '8.9.9.56886',
 }
 ```
+
+NOTE: The `$version` parameter expects a 4 digit version number (1.2.3.4), which can be found on the SonarQube download page (hidden in the filename).
 
 A more complex example could look like this:
 
@@ -164,24 +165,10 @@ Please use the GitHub issues functionality to report any bugs or requests for ne
 
 All contributions must pass all existing tests, new features should provide additional unit/acceptance tests.
 
-### Fork
-
-This is a fork of the now-defunct maestrodev/puppet-sonarqube with the following upstream PRs (partially) applied in 02/2019:
-
-* https://github.com/maestrodev/puppet-sonarqube/pull/75
-* https://github.com/maestrodev/puppet-sonarqube/pull/78
-* https://github.com/maestrodev/puppet-sonarqube/pull/80
-* https://github.com/maestrodev/puppet-sonarqube/pull/81
-* https://github.com/maestrodev/puppet-sonarqube/pull/89
-* https://github.com/maestrodev/puppet-sonarqube/pull/92
-* https://github.com/maestrodev/puppet-sonarqube/pull/95
-* https://github.com/maestrodev/puppet-sonarqube/pull/96
-* https://github.com/maestrodev/puppet-sonarqube/pull/97
-
 ## License
 
 ```
-Copyright 2019-2020 markt.de GmbH & Co. KG
+Copyright 2019-2022 markt.de GmbH & Co. KG
 Copyright 2011-2013 MaestroDev, Inc
 
 Licensed under the Apache License, Version 2.0 (the "License");
