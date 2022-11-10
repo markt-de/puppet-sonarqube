@@ -6,7 +6,7 @@ Wants=network-online.target
 [Service]
 LimitNOFILE=131072
 LimitNPROC=8192
-Environment=MAX_MAP_COUNT=262144
+Environment=MAX_MAP_COUNT=524288
 ExecStartPre=/sbin/sysctl -q -w vm.max_map_count=${MAX_MAP_COUNT}
 ExecStart=<%= $sonarqube::installroot -%>/sonar/bin/<%= regsubst($sonarqube::arch,'_','-') -%>/sonar.sh start
 ExecStop=<%= $sonarqube::installroot -%>/sonar/bin/<%= regsubst($sonarqube::arch,'_','-') -%>/sonar.sh stop
