@@ -39,6 +39,7 @@ sonarqube::pidfile: 'SonarQube.pid'
 sonarqube::user: 'sonar'
 sonarqube::user_system: true
 sonarqube::version: ~
+sonarqube::helper_dir: '/tmp'
 
 sonarqube::runner::download_url: 'http://repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist'
 sonarqube::runner::installroot: '/usr/local'
