@@ -66,16 +66,20 @@ class sonarqube::install {
 
   # Setup helper scripts to ensure that old versions of sonar and plugins
   # are removed.
-  file { '/tmp/cleanup-old-plugin-versions.sh':
+  file { $sonarqube::helper_dir:
+    ensure => directory,
+  }
+
+  file { "${sonarqube::helper_dir}/cleanup-old-plugin-versions.sh":
     content => epp("${module_name}/cleanup-old-plugin-versions.sh.epp"),
     mode    => '0755',
   }
-  -> file { '/tmp/cleanup-old-sonarqube-versions.sh':
+  -> file { "${sonarqube::helper_dir}/cleanup-old-sonarqube-versions.sh":
     content => epp("${module_name}/cleanup-old-sonarqube-versions.sh.epp"),
     mode    => '0755',
   }
   -> exec { 'remove-old-versions-of-sonarqube':
-    command     => "/tmp/cleanup-old-sonarqube-versions.sh ${sonarqube::installroot} ${sonarqube::version}",
+    command     => "${sonarqube::helper_dir}/cleanup-old-sonarqube-versions.sh ${sonarqube::installroot} ${sonarqube::version}",
     path        => '/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/bin',
     refreshonly => true,
     subscribe   => File["${sonarqube::installroot}/${sonarqube::distribution_name}-${sonarqube::version}"],

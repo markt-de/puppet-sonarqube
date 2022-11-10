@@ -121,6 +121,9 @@
 # @param search_java_additional_opts
 #   Optional JVM options for embedded elasticsearch server.
 #
+# @param helper_dir
+#   Specifies the directory for Sonarqube Helper scripts.
+#
 class sonarqube (
   # required parameters
   String $arch,
@@ -152,6 +155,7 @@ class sonarqube (
   String $user,
   Boolean $user_system,
   String $version,
+  Stdlib::Absolutepath $helper_dir,
   # optional parameters
   Optional[String] $ce_java_opts = undef,
   Optional[Integer] $ce_workercount = undef,

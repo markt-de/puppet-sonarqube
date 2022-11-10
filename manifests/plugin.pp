@@ -121,7 +121,7 @@ define sonarqube::plugin (
     }
     # Cleanup old version of this plugin
     ~> exec { "remove old versions of ${artifactid}":
-      command     => "/tmp/cleanup-old-plugin-versions.sh ${sonarqube::plugin_dir} ${artifactid} ${version}",
+      command     => "${sonarqube::helper_dir}/cleanup-old-plugin-versions.sh ${sonarqube::plugin_dir} ${artifactid} ${version}",
       path        => ['/bin', '/sbin', '/usr/bin', '/usr/sbin', '/usr/local/bin', '/usr/local/sbin'],
       refreshonly => true,
     }
