@@ -4,9 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [5.1.0] - 2023-01-04
+
+### Added
+- Add new parameter `$helper_dir` ([#27])
 
 ### Changed
+- Increase NOFILE and NPROC service limits ([#25])
+- Increase MAX_MAP_COUNT service limit ([#26])
 - Run acceptance tests with latest version 9.8.0
 
 ### Fixed
@@ -143,6 +148,9 @@ migrate from maestrodev/sonarqube to this version with only minor modifications.
 [4.0.0]: https://github.com/markt-de/puppet-sonarqube/compare/v3.1.0...v4.0.0
 [3.1.0]: https://github.com/markt-de/puppet-sonarqube/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/markt-de/puppet-sonarqube/compare/v2.6.7...v3.0.0
+[#27]: https://github.com/markt-de/puppet-sonarqube/pull/27
+[#26]: https://github.com/markt-de/puppet-sonarqube/pull/26
+[#25]: https://github.com/markt-de/puppet-sonarqube/pull/25
 [#24]: https://github.com/markt-de/puppet-sonarqube/pull/24
 [#23]: https://github.com/markt-de/puppet-sonarqube/pull/23
 [#22]: https://github.com/markt-de/puppet-sonarqube/pull/22

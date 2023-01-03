@@ -282,6 +282,12 @@ Optional JVM options for embedded elasticsearch server.
 
 Default value: ``undef``
 
+##### `helper_dir`
+
+Data type: `Stdlib::Absolutepath`
+
+Specifies the directory for Sonarqube Helper scripts.
+
 ### `sonarqube::runner`
 
 Install and configure SonarQube Runner

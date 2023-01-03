@@ -1,6 +1,6 @@
 {
   "name": "fraenki-sonarqube",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "author": "markt.de",
   "summary": "SonarQube installation and configuration",
   "license": "Apache-2.0",
