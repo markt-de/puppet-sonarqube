@@ -24,7 +24,6 @@ describe 'sonarqube' do
         ensure => link,
         target => "${target_path}/jdk-11.0.6+10/bin/java",
       }
-      #class { 'maven::maven': }
     ), catch_failures: true)
   end
 
@@ -53,8 +52,8 @@ describe 'sonarqube' do
     end
   end
 
-  context 'when installing LTS version' do
-    let(:version) { '8.9.9.56886' }
+  context 'when installing latest version' do
+    let(:version) { '9.8.0.63668' }
 
     it_behaves_like :sonar_common
   end

@@ -6,21 +6,32 @@ class sonarqube::service {
     group => $sonarqube::group,
   }
 
-  file_line { 'set PIDDIR in startup script':
-    ensure   => present,
-    path     => $sonarqube::script,
-    line     => "PIDDIR=${sonarqube::home}",
-    match    => '^PIDDIR=',
-    multiple => true,
-  }
-  -> file_line { 'set RUN_AS_USER in startup script':
-    ensure   => present,
-    path     => $sonarqube::script,
-    line     => "RUN_AS_USER=${sonarqube::user}",
-    match    => '^RUN_AS_USER=',
-    # insert after PIDDIR of no match is found
-    after    => '^PIDDIR=',
-    multiple => true,
+  # SonarQube version 9.6 introduced breaking changes in the startup script.
+  if (versioncmp($sonarqube::version, '9.6') >= 0) {
+    file_line { 'set PIDFILE in startup script':
+      ensure   => present,
+      path     => $sonarqube::script,
+      line     => "PIDFILE=${sonarqube::home}/${sonarqube::pidfile}",
+      match    => '^PIDFILE=',
+      multiple => true,
+    }
+  } else {
+    file_line { 'set PIDDIR in startup script':
+      ensure   => present,
+      path     => $sonarqube::script,
+      line     => "PIDDIR=${sonarqube::home}",
+      match    => '^PIDDIR=',
+      multiple => true,
+    }
+    -> file_line { 'set RUN_AS_USER in startup script':
+      ensure   => present,
+      path     => $sonarqube::script,
+      line     => "RUN_AS_USER=${sonarqube::user}",
+      match    => '^RUN_AS_USER=',
+      # insert after PIDDIR of no match is found
+      after    => '^PIDDIR=',
+      multiple => true,
+    }
   }
 
   if ($sonarqube::manage_service) {

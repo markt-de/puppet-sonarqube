@@ -3,6 +3,7 @@ require 'spec_helper'
 describe 'sonarqube' do
   let(:sonar_properties) { '/usr/local/sonar/conf/sonar.properties' }
   let(:sonar_version) { '8.9.9.56886' }
+  let(:sonar_version_latest) { '9.8.0.63668' }
 
   context 'when installing LTS version', :compile do
     let(:params) { { version: sonar_version.to_s } }
@@ -11,7 +12,34 @@ describe 'sonarqube' do
     it { is_expected.to contain_class('sonarqube::config') }
     it { is_expected.to contain_class('sonarqube::service') }
 
-    it { is_expected.to contain_archive('download sonarqube distribution').with_source('https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.9.9.56886.zip') }
+    it { is_expected.to contain_archive('download sonarqube distribution').with_source("https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-#{sonar_version}.zip") }
+
+    it {
+      is_expected.to contain_file_line('set PIDDIR in startup script').with(
+        match: '^PIDDIR=',
+      )
+    }
+    it {
+      is_expected.to contain_file_line('set RUN_AS_USER in startup script').with(
+        match: '^RUN_AS_USER=',
+      )
+    }
+  end
+
+  context 'when installing latest version', :compile do
+    let(:params) { { version: sonar_version_latest.to_s } }
+
+    it { is_expected.to contain_class('sonarqube::install') }
+    it { is_expected.to contain_class('sonarqube::config') }
+    it { is_expected.to contain_class('sonarqube::service') }
+
+    it { is_expected.to contain_archive('download sonarqube distribution').with_source("https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-#{sonar_version_latest}.zip") }
+
+    it {
+      is_expected.to contain_file_line('set PIDFILE in startup script').with(
+        match: '^PIDFILE=',
+      )
+    }
   end
 
   context 'when crowd configuration is supplied', :compile do

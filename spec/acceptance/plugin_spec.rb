@@ -1,7 +1,7 @@
 require 'spec_helper_acceptance'
 
 describe 'sonarqube::plugin define' do
-  sonar_version = '8.9.9.56886'
+  sonar_version = '9.8.0.63668'
   sonar_user = 'sonar'
   sonar_group = 'sonar'
   plugin_dir = '/var/local/sonar/extensions/plugins'
