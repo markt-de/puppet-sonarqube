@@ -141,7 +141,8 @@ migrate from maestrodev/sonarqube to this version with only minor modifications.
 ### Fixed
 - Fixes for SonarQube 7.9 LTS ([#1])
 
-[Unreleased]: https://github.com/markt-de/puppet-sonarqube/compare/v5.0.0...HEAD
+[Unreleased]: https://github.com/markt-de/puppet-sonarqube/compare/v5.1.0...HEAD
+[5.1.0]: https://github.com/markt-de/puppet-sonarqube/compare/v5.0.0...v5.1.0
 [5.0.0]: https://github.com/markt-de/puppet-sonarqube/compare/v4.2.0...v5.0.0
 [4.2.0]: https://github.com/markt-de/puppet-sonarqube/compare/v4.1.0...v4.2.0
 [4.1.0]: https://github.com/markt-de/puppet-sonarqube/compare/v4.0.0...v4.1.0
