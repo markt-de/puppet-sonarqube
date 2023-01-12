@@ -42,7 +42,7 @@
 #   Specifies the listen address for SonarQube.
 #
 # @param http_proxy
-#   Specifies the HTTP Proxy that should be used for SonarQube's Update Center.
+#   Specifies the HTTP Proxy that should be used for SonarQube's Update Center or connection to devops platforms.
 #
 # @param https
 #   Specifies the required configuration to enable HTTPS support.

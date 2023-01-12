@@ -310,6 +310,10 @@ http.auth.ntlm.domain=<%= $sonarqube::http_proxy['ntlm_domain'] %>
 # proxy authentication. The 2 following properties are used for HTTP and SOCKS proxies.
 http.proxyUser=<%= $sonarqube::http_proxy['user'] %>
 http.proxyPassword=<%= $sonarqube::http_proxy['password'] %>
+
+# non proxy hosts (default localhost|127.*|[::1])
+http.nonProxyHosts=<%= $sonarqube::http_proxy['non_proxy_hosts'] %>
+
 <% } -%>
 
 # SOCKS proxy (default none)
