@@ -123,7 +123,7 @@ Default value: ``undef``
 
 Data type: `Hash`
 
-Specifies the HTTP Proxy that should be used for SonarQube's Update Center.
+Specifies the HTTP Proxy that should be used for SonarQube's Update Center or connection to devops platforms.
 
 ##### `https`
 

@@ -58,12 +58,13 @@ class { 'sonarqube':
   },
   web_java_opts => '-Xmx1024m',
   updatecenter  => 'true',
-  http_proxy    => {
-    host        => 'proxy.example.com',
-    port        => '8080',
-    ntlm_domain => '',
-    user        => '',
-    password    => '',
+  http_proxy        => {
+    host            => 'proxy.example.com',
+    port            => '8080',
+    ntlm_domain     => '',
+    user            => '',
+    password        => '',
+    non_proxy_hosts => 'localhost|127.*|[::1]',
   },
   sso             => {
     enable        => 'true',
