@@ -241,6 +241,16 @@ sonar.jdbc.timeBetweenEvictionRunsMillis:  <% if $sonarqube::jdbc['time_between_
 
 <% } -%>
 
+<% if !empty($sonarqube::system_passcode) { -%>
+# A passcode can be defined to access some web services from monitoring
+# tools without having to use the credentials of a system administrator.
+# Check the Web API documentation to know which web services are supporting this authentication mode.
+# The passcode should be provided in HTTP requests with the header "X-Sonar-Passcode".
+# By default feature is disabled.
+#sonar.web.systemPasscode=
+sonar.web.systemPasscode=<%= $sonarqube::system_passcode %>
+<% } -%>
+
 <% if !empty($sonarqube::sso) { -%>
 #---------------------------------------------------------
 # SSO AUTHENTICATION

@@ -124,6 +124,9 @@
 # @param helper_dir
 #   Specifies the directory for Sonarqube Helper scripts.
 #
+# @param system_passcode
+#   Optional system_passcode setting for monitoring.
+#
 class sonarqube (
   # required parameters
   String $arch,
@@ -165,6 +168,7 @@ class sonarqube (
   Optional[String] $search_java_additional_opts = undef,
   Optional[Hash] $sso = undef,
   Optional[String] $web_java_opts = undef,
+  Optional[String] $system_passcode = undef,
 ) {
   Exec {
     path => '/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/bin',
