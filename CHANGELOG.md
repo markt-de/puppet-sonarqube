@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [5.2.0] - 2023-07-11
+
+### Added
+- Add no proxy option ([#28])
+- Add new parameter `$system_passcode` ([#29])
+
 ## [5.1.0] - 2023-01-04
 
 ### Added
@@ -141,7 +147,8 @@ migrate from maestrodev/sonarqube to this version with only minor modifications.
 ### Fixed
 - Fixes for SonarQube 7.9 LTS ([#1])
 
-[Unreleased]: https://github.com/markt-de/puppet-sonarqube/compare/v5.1.0...HEAD
+[Unreleased]: https://github.com/markt-de/puppet-sonarqube/compare/v5.2.0...HEAD
+[5.2.0]: https://github.com/markt-de/puppet-sonarqube/compare/v5.1.0...v5.2.0
 [5.1.0]: https://github.com/markt-de/puppet-sonarqube/compare/v5.0.0...v5.1.0
 [5.0.0]: https://github.com/markt-de/puppet-sonarqube/compare/v4.2.0...v5.0.0
 [4.2.0]: https://github.com/markt-de/puppet-sonarqube/compare/v4.1.0...v4.2.0
@@ -149,6 +156,8 @@ migrate from maestrodev/sonarqube to this version with only minor modifications.
 [4.0.0]: https://github.com/markt-de/puppet-sonarqube/compare/v3.1.0...v4.0.0
 [3.1.0]: https://github.com/markt-de/puppet-sonarqube/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/markt-de/puppet-sonarqube/compare/v2.6.7...v3.0.0
+[#29]: https://github.com/markt-de/puppet-sonarqube/pull/29
+[#28]: https://github.com/markt-de/puppet-sonarqube/pull/28
 [#27]: https://github.com/markt-de/puppet-sonarqube/pull/27
 [#26]: https://github.com/markt-de/puppet-sonarqube/pull/26
 [#25]: https://github.com/markt-de/puppet-sonarqube/pull/25

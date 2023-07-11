@@ -1,8 +1,8 @@
 # puppet-sonarqube
 
 [![Build Status](https://github.com/markt-de/puppet-sonarqube/actions/workflows/ci.yaml/badge.svg)](https://github.com/markt-de/puppet-sonarqube/actions/workflows/ci.yaml)
-[![Puppet Forge](https://img.shields.io/puppetforge/v/fraenki/sonarqube.svg)](https://forge.puppetlabs.com/fraenki/sonarqube)
-[![Puppet Forge](https://img.shields.io/puppetforge/f/fraenki/sonarqube.svg)](https://forge.puppetlabs.com/fraenki/sonarqube)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/markt/sonarqube.svg)](https://forge.puppetlabs.com/markt/sonarqube)
+[![Puppet Forge](https://img.shields.io/puppetforge/f/markt/sonarqube.svg)](https://forge.puppetlabs.com/markt/sonarqube)
 
 #### Table of Contents
 
