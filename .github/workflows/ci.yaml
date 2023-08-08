@@ -39,7 +39,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ['rocky8', 'ub2204', 'deb11']
+        # XXX: Acceptance tests fail for Debian 11 if the host system is
+        # running Ubuntu, but they succeed on Rocky.
+        os: ['rocky8', 'ub2204']
         puppet_version: [7]
 
     name: Acceptance / ${{ matrix.os }} / Puppet ${{ matrix.puppet_version }}
