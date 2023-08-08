@@ -9,7 +9,7 @@
 #### Public Classes
 
 * [`sonarqube`](#sonarqube): Install and configure SonarQube and additional components
-* [`sonarqube::runner`](#sonarquberunner): Install and configure SonarQube Runner
+* [`sonarqube::runner`](#sonarqube--runner): Install and configure SonarQube Runner
 
 #### Private Classes
 
@@ -21,20 +21,60 @@
 
 ### Defined types
 
-* [`sonarqube::move_to_home`](#sonarqubemove_to_home): Symlink a folder to SonarQube's installation directory
-* [`sonarqube::plugin`](#sonarqubeplugin): Manage SonarQube plugins: download, install, remove.
+* [`sonarqube::move_to_home`](#sonarqube--move_to_home): Symlink a folder to SonarQube's installation directory
+* [`sonarqube::plugin`](#sonarqube--plugin): Manage SonarQube plugins: download, install, remove.
 
 ## Classes
 
-### `sonarqube`
+### <a name="sonarqube"></a>`sonarqube`
 
 Install and configure SonarQube and additional components
 
 #### Parameters
 
-The following parameters are available in the `sonarqube` class.
+The following parameters are available in the `sonarqube` class:
 
-##### `arch`
+* [`arch`](#-sonarqube--arch)
+* [`ce_java_opts`](#-sonarqube--ce_java_opts)
+* [`ce_workercount`](#-sonarqube--ce_workercount)
+* [`config`](#-sonarqube--config)
+* [`context_path`](#-sonarqube--context_path)
+* [`crowd`](#-sonarqube--crowd)
+* [`download_dir`](#-sonarqube--download_dir)
+* [`download_url`](#-sonarqube--download_url)
+* [`edition`](#-sonarqube--edition)
+* [`group`](#-sonarqube--group)
+* [`home`](#-sonarqube--home)
+* [`host`](#-sonarqube--host)
+* [`http_proxy`](#-sonarqube--http_proxy)
+* [`https`](#-sonarqube--https)
+* [`installroot`](#-sonarqube--installroot)
+* [`jdbc`](#-sonarqube--jdbc)
+* [`ldap`](#-sonarqube--ldap)
+* [`log_folder`](#-sonarqube--log_folder)
+* [`distribution_name`](#-sonarqube--distribution_name)
+* [`pam`](#-sonarqube--pam)
+* [`plugin_tmpdir`](#-sonarqube--plugin_tmpdir)
+* [`port`](#-sonarqube--port)
+* [`portajp`](#-sonarqube--portajp)
+* [`profile`](#-sonarqube--profile)
+* [`search_host`](#-sonarqube--search_host)
+* [`search_java_opts`](#-sonarqube--search_java_opts)
+* [`search_port`](#-sonarqube--search_port)
+* [`service`](#-sonarqube--service)
+* [`sso`](#-sonarqube--sso)
+* [`manage_service`](#-sonarqube--manage_service)
+* [`updatecenter`](#-sonarqube--updatecenter)
+* [`pidfile`](#-sonarqube--pidfile)
+* [`user`](#-sonarqube--user)
+* [`user_system`](#-sonarqube--user_system)
+* [`version`](#-sonarqube--version)
+* [`web_java_opts`](#-sonarqube--web_java_opts)
+* [`search_java_additional_opts`](#-sonarqube--search_java_additional_opts)
+* [`helper_dir`](#-sonarqube--helper_dir)
+* [`system_passcode`](#-sonarqube--system_passcode)
+
+##### <a name="-sonarqube--arch"></a>`arch`
 
 Data type: `String`
 
@@ -42,133 +82,133 @@ Specifies the architecture of the installation archive that should be
 downloaded.
 Default: Automatically selected depending on the OS architecture.
 
-##### `ce_java_opts`
+##### <a name="-sonarqube--ce_java_opts"></a>`ce_java_opts`
 
 Data type: `Optional[String]`
 
 Optional JVM options for the Compute Engine.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### `ce_workercount`
+##### <a name="-sonarqube--ce_workercount"></a>`ce_workercount`
 
 Data type: `Optional[Integer]`
 
 The number of workers in the Compute Engine.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### `config`
+##### <a name="-sonarqube--config"></a>`config`
 
 Data type: `Optional[String]`
 
 Allow to specify an alternative SonarQube configuration, effectively
 replacing all contens of `sonar.properies`.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### `context_path`
+##### <a name="-sonarqube--context_path"></a>`context_path`
 
 Data type: `String`
 
 Specifies the context path for the application.
 
-##### `crowd`
+##### <a name="-sonarqube--crowd"></a>`crowd`
 
 Data type: `Hash`
 
 Specifies whether the Crowd plugin should be enabled.
 Default: `false`
 
-##### `download_dir`
+##### <a name="-sonarqube--download_dir"></a>`download_dir`
 
 Data type: `Stdlib::Absolutepath`
 
 The directory where the SonarQube installation archive should be stored.
 
-##### `download_url`
+##### <a name="-sonarqube--download_url"></a>`download_url`
 
 Data type: `String`
 
 The URL from which the SonarQube installation archive should be downloaded.
 
-##### `edition`
+##### <a name="-sonarqube--edition"></a>`edition`
 
 Data type: `String`
 
 Specifies the edition of SonarQube that should be installed.
 Default: `community`
 
-##### `group`
+##### <a name="-sonarqube--group"></a>`group`
 
 Data type: `String`
 
 The group for the SonarQube application.
 
-##### `home`
+##### <a name="-sonarqube--home"></a>`home`
 
 Data type: `String`
 
 SonarQube's data directory.
 
-##### `host`
+##### <a name="-sonarqube--host"></a>`host`
 
 Data type: `Optional[String]`
 
 Specifies the listen address for SonarQube.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### `http_proxy`
+##### <a name="-sonarqube--http_proxy"></a>`http_proxy`
 
 Data type: `Hash`
 
 Specifies the HTTP Proxy that should be used for SonarQube's Update Center or connection to devops platforms.
 
-##### `https`
+##### <a name="-sonarqube--https"></a>`https`
 
 Data type: `Hash`
 
 Specifies the required configuration to enable HTTPS support.
 
-##### `installroot`
+##### <a name="-sonarqube--installroot"></a>`installroot`
 
 Data type: `Stdlib::Absolutepath`
 
 Specifies the base directory where SonarQube should be installed. A new
 subdirectory for each version of SonarQube will be created.
 
-##### `jdbc`
+##### <a name="-sonarqube--jdbc"></a>`jdbc`
 
 Data type: `Hash`
 
 Specifies the database configuration for SonarQube.
 
-##### `ldap`
+##### <a name="-sonarqube--ldap"></a>`ldap`
 
 Data type: `Hash`
 
 Specifies the required configuration to enable LDAP authentication.
 
-##### `log_folder`
+##### <a name="-sonarqube--log_folder"></a>`log_folder`
 
 Data type: `Stdlib::Absolutepath`
 
 Specifies the log directory for SonarQube.
 
-##### `distribution_name`
+##### <a name="-sonarqube--distribution_name"></a>`distribution_name`
 
 Data type: `String`
 
 Specifies the basename of the SonarQube archive.
 
-##### `pam`
+##### <a name="-sonarqube--pam"></a>`pam`
 
 Data type: `Hash`
 
 Specifies the required configuration to enable PAM authentication.
 
-##### `plugin_tmpdir`
+##### <a name="-sonarqube--plugin_tmpdir"></a>`plugin_tmpdir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -176,89 +216,89 @@ Specifies the temporary download directory for plugin files. This defaults
 to `/tmp`. Changing it to something else would eleminate the need to
 download plugin files again after `/tmp` was purged.
 
-##### `port`
+##### <a name="-sonarqube--port"></a>`port`
 
 Data type: `Integer`
 
 Specifies the TCP port for SonarQube.
 
-##### `portajp`
+##### <a name="-sonarqube--portajp"></a>`portajp`
 
 Data type: `Integer`
 
 Specifies the port to use for the AJP communication protocol.
 
-##### `profile`
+##### <a name="-sonarqube--profile"></a>`profile`
 
 Data type: `Boolean`
 
 Specifies wether profiling should be enabled for SonarQube.
 
-##### `search_host`
+##### <a name="-sonarqube--search_host"></a>`search_host`
 
 Data type: `String`
 
 Specifies the IP/hostname of the Elasticsearch server.
 
-##### `search_java_opts`
+##### <a name="-sonarqube--search_java_opts"></a>`search_java_opts`
 
 Data type: `Optional[String]`
 
 Optional JVM options for the Elasticsearch server.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### `search_port`
+##### <a name="-sonarqube--search_port"></a>`search_port`
 
 Data type: `Integer`
 
 Specifies the TCP port of the Elasticsearch server.
 
-##### `service`
+##### <a name="-sonarqube--service"></a>`service`
 
 Data type: `String`
 
 Specifies the name of the SonarQube system service.
 
-##### `sso`
+##### <a name="-sonarqube--sso"></a>`sso`
 
 Data type: `Optional[Hash]`
 
 Enable authentication using HTTP headers.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### `manage_service`
+##### <a name="-sonarqube--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 If this module should create and mange the service configuration. Defaults to true
 
-##### `updatecenter`
+##### <a name="-sonarqube--updatecenter"></a>`updatecenter`
 
 Data type: `Boolean`
 
 Specifies whether to enable the Update Center.
 
-##### `pidfile`
+##### <a name="-sonarqube--pidfile"></a>`pidfile`
 
 Data type: `String`
 
 Specifies the name of the PID file.
 
-##### `user`
+##### <a name="-sonarqube--user"></a>`user`
 
 Data type: `String`
 
 The user for the SonarQube application.
 
-##### `user_system`
+##### <a name="-sonarqube--user_system"></a>`user_system`
 
 Data type: `Boolean`
 
 Specifies whether the SonarQube user should be a system user.
 
-##### `version`
+##### <a name="-sonarqube--version"></a>`version`
 
 Data type: `String`
 
@@ -266,68 +306,83 @@ Specifies the version of SonarQube that should be installed/updated.
 Expects a 4 digit version number (1.2.3.4), which can be found on the
 SonarQube download page.
 
-##### `web_java_opts`
+##### <a name="-sonarqube--web_java_opts"></a>`web_java_opts`
 
 Data type: `Optional[String]`
 
 Optional JVM options for SonarQube's web server.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### `search_java_additional_opts`
+##### <a name="-sonarqube--search_java_additional_opts"></a>`search_java_additional_opts`
 
 Data type: `Optional[String]`
 
 Optional JVM options for embedded elasticsearch server.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### `helper_dir`
+##### <a name="-sonarqube--helper_dir"></a>`helper_dir`
 
 Data type: `Stdlib::Absolutepath`
 
 Specifies the directory for Sonarqube Helper scripts.
 
-### `sonarqube::runner`
+##### <a name="-sonarqube--system_passcode"></a>`system_passcode`
+
+Data type: `Optional[String]`
+
+Optional system_passcode setting for monitoring.
+
+Default value: `undef`
+
+### <a name="sonarqube--runner"></a>`sonarqube::runner`
 
 Install and configure SonarQube Runner
 
 #### Parameters
 
-The following parameters are available in the `sonarqube::runner` class.
+The following parameters are available in the `sonarqube::runner` class:
 
-##### `distribution_name`
+* [`distribution_name`](#-sonarqube--runner--distribution_name)
+* [`download_url`](#-sonarqube--runner--download_url)
+* [`installroot`](#-sonarqube--runner--installroot)
+* [`jdbc`](#-sonarqube--runner--jdbc)
+* [`sonarqube_server`](#-sonarqube--runner--sonarqube_server)
+* [`version`](#-sonarqube--runner--version)
+
+##### <a name="-sonarqube--runner--distribution_name"></a>`distribution_name`
 
 Data type: `String`
 
 Specifies the basename of the installation archive.
 
-##### `download_url`
+##### <a name="-sonarqube--runner--download_url"></a>`download_url`
 
 Data type: `String`
 
 The URL from which the installation archive should be downloaded.
 
-##### `installroot`
+##### <a name="-sonarqube--runner--installroot"></a>`installroot`
 
 Data type: `Stdlib::Absolutepath`
 
 Specifies the base directory where it should be installed. A new
 subdirectory for each version will be created.
 
-##### `jdbc`
+##### <a name="-sonarqube--runner--jdbc"></a>`jdbc`
 
 Data type: `Hash`
 
 Specifies the database configuration.
 
-##### `sonarqube_server`
+##### <a name="-sonarqube--runner--sonarqube_server"></a>`sonarqube_server`
 
 Data type: `String`
 
 The URL for the default SonarQube server.
 
-##### `version`
+##### <a name="-sonarqube--runner--version"></a>`version`
 
 Data type: `String`
 
@@ -335,29 +390,39 @@ Specifies the version that should be installed/updated.
 
 ## Defined types
 
-### `sonarqube::move_to_home`
+### <a name="sonarqube--move_to_home"></a>`sonarqube::move_to_home`
 
 Symlink a folder to SonarQube's installation directory
 
 #### Parameters
 
-The following parameters are available in the `sonarqube::move_to_home` defined type.
+The following parameters are available in the `sonarqube::move_to_home` defined type:
 
-##### `home`
+* [`home`](#-sonarqube--move_to_home--home)
+
+##### <a name="-sonarqube--move_to_home--home"></a>`home`
 
 Data type: `Stdlib::Absolutepath`
 
 SonarQube's data directory.
 
-### `sonarqube::plugin`
+### <a name="sonarqube--plugin"></a>`sonarqube::plugin`
 
 Manage SonarQube plugins: download, install, remove.
 
 #### Parameters
 
-The following parameters are available in the `sonarqube::plugin` defined type.
+The following parameters are available in the `sonarqube::plugin` defined type:
 
-##### `artifactid`
+* [`artifactid`](#-sonarqube--plugin--artifactid)
+* [`ensure`](#-sonarqube--plugin--ensure)
+* [`ghid`](#-sonarqube--plugin--ghid)
+* [`groupid`](#-sonarqube--plugin--groupid)
+* [`legacy`](#-sonarqube--plugin--legacy)
+* [`url`](#-sonarqube--plugin--url)
+* [`version`](#-sonarqube--plugin--version)
+
+##### <a name="-sonarqube--plugin--artifactid"></a>`artifactid`
 
 Data type: `String`
 
@@ -365,7 +430,7 @@ Namevar. Specifies the name of the plugin.
 
 Default value: `$name`
 
-##### `ensure`
+##### <a name="-sonarqube--plugin--ensure"></a>`ensure`
 
 Data type: `Enum['present','absent']`
 
@@ -374,7 +439,7 @@ Default: `present`
 
 Default value: `present`
 
-##### `ghid`
+##### <a name="-sonarqube--plugin--ghid"></a>`ghid`
 
 Data type: `Optional[String]`
 
@@ -382,9 +447,9 @@ Specifies a combination of a GitHub username and project name,
 for example `myuser/sonar-exampleplugin`. This is used to generate
 the download URL.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### `groupid`
+##### <a name="-sonarqube--plugin--groupid"></a>`groupid`
 
 Data type: `String`
 
@@ -392,15 +457,15 @@ Specifies the groupid to use with maven.
 
 Default value: `'org.codehaus.sonar-plugins'`
 
-##### `legacy`
+##### <a name="-sonarqube--plugin--legacy"></a>`legacy`
 
 Data type: `Boolean`
 
 Install plugin using Maven. May not work with recent versions.
 
-Default value: ``false``
+Default value: `false`
 
-##### `url`
+##### <a name="-sonarqube--plugin--url"></a>`url`
 
 Data type: `Optional[String]`
 
@@ -408,9 +473,9 @@ A direct download URL that points to the .jar file for the specified plugin.
 The filename must match the values of `$name` and `$version`, otherwise the
 cleanup script may malfunction.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### `version`
+##### <a name="-sonarqube--plugin--version"></a>`version`
 
 Data type: `String`
 
