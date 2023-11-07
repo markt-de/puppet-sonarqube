@@ -127,6 +127,9 @@
 # @param system_passcode
 #   Optional system_passcode setting for monitoring.
 #
+# @param additional_opts
+#   Optional additional options to add to sonar.properties
+#
 class sonarqube (
   # required parameters
   String $arch,
@@ -169,6 +172,7 @@ class sonarqube (
   Optional[Hash] $sso = undef,
   Optional[String] $web_java_opts = undef,
   Optional[String] $system_passcode = undef,
+  Optional[Hash] $additional_opts = undef,
 ) {
   Exec {
     path => '/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/bin',
