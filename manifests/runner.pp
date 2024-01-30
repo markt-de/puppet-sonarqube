@@ -31,8 +31,5 @@ class sonarqube::runner (
     path => '/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/bin',
   }
 
-  anchor { 'sonarqube::runner::begin': }
-  -> class { 'sonarqube::runner::install': }
-  -> class { 'sonarqube::runner::config': }
-  ~> anchor { 'sonarqube::runner::end': }
+  include(['sonarqube::runner::install', 'sonarqube::runner::config'])
 }
