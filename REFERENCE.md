@@ -73,6 +73,7 @@ The following parameters are available in the `sonarqube` class:
 * [`search_java_additional_opts`](#-sonarqube--search_java_additional_opts)
 * [`helper_dir`](#-sonarqube--helper_dir)
 * [`system_passcode`](#-sonarqube--system_passcode)
+* [`additional_opts`](#-sonarqube--additional_opts)
 
 ##### <a name="-sonarqube--arch"></a>`arch`
 
@@ -333,6 +334,14 @@ Specifies the directory for Sonarqube Helper scripts.
 Data type: `Optional[String]`
 
 Optional system_passcode setting for monitoring.
+
+Default value: `undef`
+
+##### <a name="-sonarqube--additional_opts"></a>`additional_opts`
+
+Data type: `Optional[Hash]`
+
+Optional additional options to add to sonar.properties
 
 Default value: `undef`
 

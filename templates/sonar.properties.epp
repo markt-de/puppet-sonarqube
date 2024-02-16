@@ -482,4 +482,13 @@ crowd.application: <%= $sonarqube::crowd['application'] %>
 
 # Crowd application password.
 crowd.password: <%= $sonarqube::crowd['password'] %>
-<% } %>
+<% } -%>
+
+<% if $sonarqube::additional_opts { %>
+#-------------------
+# Additional options
+#-------------------
+<% $sonarqube::additional_opts.each |$config, $value| { -%>
+<%= $config %>=<%= $value %>
+<% } -%>
+<% } -%>
