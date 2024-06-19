@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe 'sonarqube' do
   let(:sonar_properties) { '/usr/local/sonar/conf/sonar.properties' }
-  let(:sonar_version) { '8.9.9.56886' }
-  let(:sonar_version_latest) { '9.8.0.63668' }
+  let(:sonar_version) { '9.9.4.87374' }
+  let(:sonar_version_latest) { '10.4.1.88267' }
 
   context 'when installing LTS version', :compile do
     let(:params) { { version: sonar_version.to_s } }
@@ -15,13 +15,8 @@ describe 'sonarqube' do
     it { is_expected.to contain_archive('download sonarqube distribution').with_source("https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-#{sonar_version}.zip") }
 
     it {
-      is_expected.to contain_file_line('set PIDDIR in startup script').with(
-        match: '^PIDDIR=',
-      )
-    }
-    it {
-      is_expected.to contain_file_line('set RUN_AS_USER in startup script').with(
-        match: '^RUN_AS_USER=',
+      is_expected.to contain_file_line('set PIDFILE in startup script').with(
+        match: '^PIDFILE=',
       )
     }
   end
@@ -43,7 +38,7 @@ describe 'sonarqube' do
   end
 
   context 'when crowd configuration is supplied', :compile do
-    let :params do
+    let(:params) do
       {
         version: sonar_version.to_s,
         crowd:
@@ -76,7 +71,7 @@ describe 'sonarqube' do
   end
 
   context 'when unzip package is already defined', :compile do
-    let :pre_condition do
+    let(:pre_condition) do
       "package { 'unzip': ensure => installed }"
     end
     let(:params) { { version: sonar_version.to_s } }
@@ -85,7 +80,7 @@ describe 'sonarqube' do
   end
 
   context 'when ldap local users configuration is supplied', :compile do
-    let :params do
+    let(:params) do
       {
         version: sonar_version.to_s,
         ldap:
@@ -104,7 +99,7 @@ describe 'sonarqube' do
   end
 
   context 'when ldap local users configuration is supplied as array', :compile do
-    let :params do
+    let(:params) do
       {
         version: sonar_version.to_s,
         ldap:
@@ -123,7 +118,7 @@ describe 'sonarqube' do
   end
 
   context 'when no ldap local users configuration is supplied', :compile do
-    let :params do
+    let(:params) do
       {
         version: sonar_version.to_s,
         ldap:

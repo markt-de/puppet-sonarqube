@@ -28,13 +28,13 @@
 #   and purge old plugin versions.
 #
 define sonarqube::plugin (
-  String $version,
-  String $artifactid = $name,
+  String[1] $version,
+  String[1] $artifactid = $name,
   Enum['present','absent'] $ensure = present,
   Boolean $legacy = false,
-  String $groupid = 'org.codehaus.sonar-plugins',
-  Optional[String] $ghid = undef,
-  Optional[String] $url = undef,
+  String[1] $groupid = 'org.codehaus.sonar-plugins',
+  Optional[String[1]] $ghid = undef,
+  Optional[String[1]] $url = undef,
 ) {
   include 'sonarqube'
 
@@ -44,20 +44,19 @@ define sonarqube::plugin (
 
   # Install plugin
   if $ensure == present {
-    if $url {
+    if $url !~ Undef {
       # Use direct download URL for installation
 
       archive { "download plugin ${plugin_name}":
         ensure => present,
         path   => $plugin_tmp,
         source => $url,
-        before => File[$plugin],
         notify => [
           File[$plugin],
           Exec["remove old versions of ${artifactid}"],
         ],
       }
-    } elsif $ghid {
+    } elsif $ghid !~ Undef {
       # Use GitHub project URL for installation
 
       # Compose GitHub download URL. If the project does not use this
@@ -68,13 +67,12 @@ define sonarqube::plugin (
         ensure => present,
         path   => $plugin_tmp,
         source => $_ghurl,
-        before => File[$plugin],
         notify => [
           File[$plugin],
           Exec["remove old versions of ${artifactid}"],
         ],
       }
-    } elsif ($legacy == false) and $version {
+    } elsif !$legacy {
       # Install from SonarSource
       # NOTE: This feature is deprecated since SonarQube 8.5, see:
       # https://community.sonarsource.com/t/sonarqube-v8-5-and-beyond-where-did-all-the-plugins-go/32792
@@ -87,20 +85,18 @@ define sonarqube::plugin (
         ensure => present,
         path   => $plugin_tmp,
         source => $_sonarurl,
-        before => File[$plugin],
         notify => [
           File[$plugin],
           Exec["remove old versions of ${artifactid}"],
         ],
       }
-    } elsif ($legacy == true) and $version {
+    } elsif $legacy {
       # Legacy method: install using Maven. May not work with recent versions.
 
       maven { "/tmp/${plugin_name}":
         groupid    => $groupid,
         artifactid => $artifactid,
         version    => $version,
-        before     => File[$plugin],
         require    => File[$sonarqube::plugin_dir],
         notify     => [
           File[$plugin],
@@ -114,13 +110,16 @@ define sonarqube::plugin (
     # Copy plugin from tmp location to plugin directory.
     file { $plugin:
       ensure => $ensure,
-      source => "/tmp/${plugin_name}",
+      source => $plugin_tmp,
       owner  => $sonarqube::user,
       group  => $sonarqube::group,
-      notify => Class['sonarqube::service'],
+      notify => [
+        Class['sonarqube::service'],
+        Exec["remove old versions of ${artifactid}"],
+      ],
     }
     # Cleanup old version of this plugin
-    ~> exec { "remove old versions of ${artifactid}":
+    exec { "remove old versions of ${artifactid}":
       command     => "${sonarqube::helper_dir}/cleanup-old-plugin-versions.sh ${sonarqube::plugin_dir} ${artifactid} ${version}",
       path        => ['/bin', '/sbin', '/usr/bin', '/usr/sbin', '/usr/local/bin', '/usr/local/sbin'],
       refreshonly => true,

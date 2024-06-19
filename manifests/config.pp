@@ -1,13 +1,15 @@
 # @summary Configure SonarQube
 # @api private
 class sonarqube::config {
+  require('sonarqube::install')
+
   File {
     owner => $sonarqube::user,
     group => $sonarqube::group,
   }
 
   # Create configuration files
-  if $sonarqube::config != undef {
+  if $sonarqube::config !~ Undef {
     # Create config from scratch, do not use the template.
     file { "${sonarqube::installdir}/conf/sonar.properties":
       source => $sonarqube::config,

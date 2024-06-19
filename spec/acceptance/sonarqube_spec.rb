@@ -14,15 +14,16 @@ describe 'sonarqube' do
         $target_path = '/usr/java'
       }
 
-      java::adopt { 'jdk11':
-        ensure        => 'present',
-        java          => 'jdk',
-        version_major => '11.0.6',
-        version_minor => '10',
+      java::adoptium { 'jdk17':
+        version_major => '17',
+        version_minor => '0',
+        version_patch => '9',
+        version_build => '9',
       }
-      -> file { '/usr/bin/java':
-        ensure => link,
-        target => "${target_path}/jdk-11.0.6+10/bin/java",
+      file { '/usr/bin/java':
+        ensure  => link,
+        target  => "${target_path}/jdk-17.0.9+9/bin/java",
+        require => Java::Adoptium['jdk17'],
       }
     ), catch_failures: true)
   end
@@ -53,7 +54,7 @@ describe 'sonarqube' do
   end
 
   context 'when installing latest version' do
-    let(:version) { '9.8.0.63668' }
+    let(:version) { '9.9.4.87374' }
 
     it_behaves_like :sonar_common
   end

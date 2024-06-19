@@ -1,6 +1,8 @@
 # @summary Setup SonarQube service
 # @api private
 class sonarqube::service {
+  require(['sonarqube::install', 'sonarqube::config'])
+
   File {
     owner => $sonarqube::user,
     group => $sonarqube::group,
@@ -11,7 +13,7 @@ class sonarqube::service {
     file_line { 'set PIDFILE in startup script':
       ensure   => present,
       path     => $sonarqube::script,
-      line     => "PIDFILE=${sonarqube::home}/${sonarqube::pidfile}",
+      line     => "PIDFILE=/run/${sonarqube::service}/${sonarqube::pidfile}",
       match    => '^PIDFILE=',
       multiple => true,
     }
@@ -19,18 +21,18 @@ class sonarqube::service {
     file_line { 'set PIDDIR in startup script':
       ensure   => present,
       path     => $sonarqube::script,
-      line     => "PIDDIR=${sonarqube::home}",
+      line     => "PIDDIR=/run/${sonarqube::service}",
       match    => '^PIDDIR=',
       multiple => true,
     }
-    -> file_line { 'set RUN_AS_USER in startup script':
+    file_line { 'set RUN_AS_USER in startup script':
       ensure   => present,
       path     => $sonarqube::script,
       line     => "RUN_AS_USER=${sonarqube::user}",
       match    => '^RUN_AS_USER=',
-      # insert after PIDDIR of no match is found
       after    => '^PIDDIR=',
       multiple => true,
+      require  => File_line['set PIDDIR in startup script'],
     }
   }
 
@@ -41,20 +43,27 @@ class sonarqube::service {
     }
 
     # Add systemd service configuration
-    -> file { "/etc/systemd/system/${sonarqube::service}.service":
+    file { "/etc/systemd/system/${sonarqube::service}.service":
       ensure  => file,
       owner   => root,
       group   => root,
       mode    => '0644',
       content => epp("${module_name}/sonar.service.epp"),
+      notify  => Service[$sonarqube::service],
+    }
+
+    file { "/run/${sonarqube::service}":
+      ensure => directory,
+      mode   => '0770',
     }
 
     # Enable systemd service
-    -> service { $sonarqube::service:
+    service { $sonarqube::service:
       ensure     => running,
       hasrestart => true,
       hasstatus  => true,
       enable     => true,
+      require    => File["/run/${sonarqube::service}"],
     }
   }
 }

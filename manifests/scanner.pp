@@ -1,4 +1,4 @@
-# @summary Install and configure SonarQube Runner
+# @summary Install and configure SonarQube Scanner
 #
 # @param distribution_name
 #   Specifies the basename of the installation archive.
@@ -19,17 +19,17 @@
 # @param version
 #   Specifies the version that should be installed/updated.
 #
-class sonarqube::runner (
-  String $download_url,
+class sonarqube::scanner (
+  String[1] $download_url,
   Stdlib::Absolutepath $installroot,
   Hash $jdbc,
-  String $distribution_name,
-  String $sonarqube_server,
-  String $version,
+  String[1] $distribution_name,
+  String[1] $sonarqube_server,
+  String[1] $version,
 ) {
   Exec {
     path => '/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/bin',
   }
 
-  include(['sonarqube::runner::install', 'sonarqube::runner::config'])
+  include(['sonarqube::scanner::install', 'sonarqube::scanner::config'])
 }

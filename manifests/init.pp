@@ -129,46 +129,46 @@
 #
 class sonarqube (
   # required parameters
-  String $arch,
-  String $context_path,
+  String[1] $arch,
+  String[1] $context_path,
   Hash $crowd,
-  String $download_url,
-  String $edition,
-  String $group,
+  String[1] $download_url,
+  String[1] $edition,
+  String[1] $group,
   Hash $http_proxy,
   Hash $https,
-  String $home,
+  String[1] $home,
   Stdlib::Absolutepath $installroot,
   Hash $jdbc,
   Hash $ldap,
   Stdlib::Absolutepath $log_folder,
-  String $distribution_name,
+  String[1] $distribution_name,
   Hash $pam,
   Stdlib::Absolutepath $plugin_tmpdir,
-  Integer $port,
-  Integer $portajp,
+  Variant[Stdlib::Port, Integer[-1, 0]] $port,
+  Variant[Stdlib::Port, Integer[-1, 0]] $portajp,
   Boolean $profile,
-  String $search_host,
-  Integer $search_port,
-  String $service,
+  String[1] $search_host,
+  Variant[Stdlib::Port, Integer[-1, 0]] $search_port,
+  String[1] $service,
   Boolean $manage_service,
   Stdlib::Absolutepath $download_dir,
   Boolean $updatecenter,
-  String $pidfile,
-  String $user,
+  String[1] $pidfile,
+  String[1] $user,
   Boolean $user_system,
-  String $version,
+  String[1] $version,
   Stdlib::Absolutepath $helper_dir,
   # optional parameters
-  Optional[String] $ce_java_opts = undef,
+  Optional[String[1]] $ce_java_opts = undef,
   Optional[Integer] $ce_workercount = undef,
-  Optional[String] $config = undef,
-  Optional[String] $host = undef,
-  Optional[String] $search_java_opts = undef,
-  Optional[String] $search_java_additional_opts = undef,
+  Optional[String[1]] $config = undef,
+  Optional[String[1]] $host = undef,
+  Optional[String[1]] $search_java_opts = undef,
+  Optional[String[1]] $search_java_additional_opts = undef,
   Optional[Hash] $sso = undef,
-  Optional[String] $web_java_opts = undef,
-  Optional[String] $system_passcode = undef,
+  Optional[String[1]] $web_java_opts = undef,
+  Optional[String[1]] $system_passcode = undef,
 ) {
   Exec {
     path => '/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/bin',
@@ -185,7 +185,5 @@ class sonarqube (
   $tmpzip = "${sonarqube::download_dir}/${sonarqube::distribution_name}-${sonarqube::version}.zip"
   $script = "${installdir}/bin/${sonarqube::arch}/sonar.sh"
 
-  class { 'sonarqube::install': }
-  -> class { 'sonarqube::config': }
-  -> class { 'sonarqube::service': }
+  include(['sonarqube::install', 'sonarqube::config', 'sonarqube::service'])
 }

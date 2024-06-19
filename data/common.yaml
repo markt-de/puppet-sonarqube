@@ -41,12 +41,12 @@ sonarqube::user_system: true
 sonarqube::version: ~
 sonarqube::helper_dir: '/tmp'
 
-sonarqube::runner::download_url: 'http://repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist'
-sonarqube::runner::installroot: '/usr/local'
-sonarqube::runner::jdbc:
+sonarqube::scanner::download_url: 'https://binaries.sonarsource.com/Distribution/sonar-scanner-cli'
+sonarqube::scanner::installroot: '/usr/local'
+sonarqube::scanner::jdbc:
   url: 'jdbc:h2:tcp://localhost:9092/sonar'
   username: 'sonar'
   password: 'sonar'
-sonarqube::runner::distribution_name: 'sonar-runner'
-sonarqube::runner::sonarqube_server: 'http://sonar.local:9000/'
-sonarqube::runner::version: ~
+sonarqube::scanner::distribution_name: 'sonar-scanner'
+sonarqube::scanner::sonarqube_server: 'http://sonar.local:9000/'
+sonarqube::scanner::version: ~

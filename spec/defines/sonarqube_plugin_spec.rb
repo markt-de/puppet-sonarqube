@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe 'sonarqube::plugin', type: :define do
-  let(:sonar_version) { '8.9.9.56886' }
+  let(:sonar_version) { '9.9.4.87374' }
 
   on_supported_os.each do |os, _facts|
     context "on #{os}" do
       context 'when removing a plugin' do
-        plugin_name = 'sonar-kotlin-plugin'
-        plugin_version = '1.7.0.883'
+        plugin_name = 'sonar-csharp-plugin'
+        plugin_version = '8.51.0.59060'
 
         let(:title) { plugin_name }
         let(:params) do
@@ -30,7 +30,7 @@ describe 'sonarqube::plugin', type: :define do
 
       context 'when installing a plugin from sonarsource' do
         plugin_name = 'sonar-kotlin-plugin'
-        plugin_version = '1.7.0.883'
+        plugin_version = '2.20.0.4382'
 
         let(:title) { plugin_name }
         let(:params) do
@@ -51,8 +51,8 @@ describe 'sonarqube::plugin', type: :define do
       end
 
       context 'when installing a plugin from github' do
-        plugin_name = 'sonar-checkstyle-plugin'
-        plugin_version = '4.31'
+        plugin_name = 'checkstyle-sonar-plugin'
+        plugin_version = '10.12.5'
         ghid = 'checkstyle/sonar-checkstyle'
 
         let(:title) { plugin_name }
@@ -76,7 +76,7 @@ describe 'sonarqube::plugin', type: :define do
 
       context 'when installing a plugin from a URL' do
         plugin_name = 'sonar-detekt'
-        plugin_version = '2.0.0'
+        plugin_version = '2.5.0'
         plugin_url = "https://github.com/detekt/sonar-kotlin/releases/download/#{plugin_version}/#{plugin_name}-#{plugin_version}.jar"
 
         let(:title) { plugin_name }
