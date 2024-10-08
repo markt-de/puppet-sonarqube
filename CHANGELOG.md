@@ -1,8 +1,29 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+
+## [6.0.0] - 2024-10-08
+
+### Added
+- SonarQube Scanner support
+- Dependency [marktlib](https://github.com/markt-de/puppet-marktlib/)
+
+### Changed
+- Update PDK to 3.2.0
+- Update module dependencies (incl. [#35])
+- DSL modernization/rework
+- CI workflow modernization/rework
+
+### Removed
+- Legacy os support
+- SonarQube Runner support
+
+### Fixed
+- Stdlib deprecations for `ensure_packages()`
+- GitHub Actions (unit+acceptance tests)
+- Various paths for recent (OS and SonarQube) installations
 
 ## [5.3.0] - 2023-08-08
 
@@ -156,7 +177,8 @@ migrate from maestrodev/sonarqube to this version with only minor modifications.
 ### Fixed
 - Fixes for SonarQube 7.9 LTS ([#1])
 
-[Unreleased]: https://github.com/markt-de/puppet-sonarqube/compare/v5.3.0...HEAD
+[Unreleased]: https://github.com/markt-de/puppet-sonarqube/compare/v6.0.0...HEAD
+[6.0.0]: https://github.com/markt-de/puppet-sonarqube/compare/v5.3.0...v6.0.0
 [5.3.0]: https://github.com/markt-de/puppet-sonarqube/compare/v5.2.0...v5.3.0
 [5.2.0]: https://github.com/markt-de/puppet-sonarqube/compare/v5.1.0...v5.2.0
 [5.1.0]: https://github.com/markt-de/puppet-sonarqube/compare/v5.0.0...v5.1.0
@@ -166,6 +188,7 @@ migrate from maestrodev/sonarqube to this version with only minor modifications.
 [4.0.0]: https://github.com/markt-de/puppet-sonarqube/compare/v3.1.0...v4.0.0
 [3.1.0]: https://github.com/markt-de/puppet-sonarqube/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/markt-de/puppet-sonarqube/compare/v2.6.7...v3.0.0
+[#35]: https://github.com/markt-de/puppet-sonarqube/pull/35
 [#29]: https://github.com/markt-de/puppet-sonarqube/pull/29
 [#28]: https://github.com/markt-de/puppet-sonarqube/pull/28
 [#27]: https://github.com/markt-de/puppet-sonarqube/pull/27

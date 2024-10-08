@@ -1,6 +1,6 @@
 {
   "name": "markt-sonarqube",
-  "version": "5.3.0",
+  "version": "6.0.0",
   "author": "markt.de",
   "summary": "SonarQube installation and configuration",
   "license": "Apache-2.0",

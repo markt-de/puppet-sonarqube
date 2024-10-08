@@ -22,6 +22,10 @@ A puppet module to install and configure [SonarQube](https://www.sonarqube.org/)
 
 The main goal is compatibility with the latest LTS release of SonarQube. Older versions are not supported. However, newer versions should usually work too.
 
+Note that as of release 6.0.0:
+  - SonarQube Runner is nowadays called SonarQube Scanner and class names, variable names, download urls etc. are changed/renamed accordingly
+  - Java 17 is now required as runtime environment
+
 ## Usage
 
 ### Basic usage
