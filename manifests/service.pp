@@ -52,18 +52,12 @@ class sonarqube::service {
       notify  => Service[$sonarqube::service],
     }
 
-    file { "/run/${sonarqube::service}":
-      ensure => directory,
-      mode   => '0770',
-    }
-
     # Enable systemd service
     service { $sonarqube::service:
       ensure     => running,
       hasrestart => true,
       hasstatus  => true,
       enable     => true,
-      require    => File["/run/${sonarqube::service}"],
     }
   }
 }
