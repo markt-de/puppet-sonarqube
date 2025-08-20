@@ -12,6 +12,7 @@ ExecStart=<%= $sonarqube::installroot -%>/sonar/bin/<%= regsubst($sonarqube::arc
 ExecStop=<%= $sonarqube::installroot -%>/sonar/bin/<%= regsubst($sonarqube::arch,'_','-') -%>/sonar.sh stop
 ExecReload=<%= $sonarqube::installroot -%>/sonar/bin/<%= regsubst($sonarqube::arch,'_','-') -%>/sonar.sh restart
 PIDFile=/run/<%= $sonarqube::service -%>/<%= $sonarqube::pidfile %>
+RuntimeDirectory=<%= $sonarqube::service %>
 Type=forking
 PermissionsStartOnly=true
 User=<%= $sonarqube::user %>
